@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Redirect } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-//Components
 import Homepage from './components/pages/Homepage';
 import Loginpage from './components/pages/Loginpage';
 import Adminpage from './components/pages/Adminpage';
