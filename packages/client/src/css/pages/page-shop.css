@@ -4,7 +4,7 @@
 
 .wrapper-shop header h1 {margin-bottom: var(--space-l)}
 .wrapper-shop header nav {margin-bottom: var(--space-l)}
-.wrapper-shop header nav a{
+.wrapper-shop header nav a {
   margin-right: var(--space-m);
   text-transform: uppercase;
   color: var(--color-foreground);
@@ -12,7 +12,8 @@
 }
 .wrapper-shop header nav a:hover,
 .wrapper-shop header nav a:active {
-  font-weight:bold;
+  /* font-weight:bold; */
+  text-shadow: 0 0 0.1px hsl(0, 0%, 0%);
 }
 .wrapper-shop header nav a:visited {
     color: var(--color-foreground);
