@@ -2,13 +2,14 @@
   "name": "webshop-demo-api",
   "version": "1.0.0",
   "description": "REST API for webshop demo",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon src/app.js"
   },
   "author": "Oskars Sylwan",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.2",
     "cloudinary": "^1.9.1",
     "cors": "^2.8.4",

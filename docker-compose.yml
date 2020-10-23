@@ -15,7 +15,7 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./packages/api:/home/api
+      - ./packages/api/src:/home/api/src
     container_name: webshop-demo-api
 
   client:

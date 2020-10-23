@@ -1,5 +1,5 @@
 export const setup = {
-  api_location:  process.env.REACT_APP_API_LOCATION || 'http://192.168.1.39:8080'
+  api_location:  process.env.REACT_APP_API_LOCATION || 'http://localhost:3001'
 }
 
 
