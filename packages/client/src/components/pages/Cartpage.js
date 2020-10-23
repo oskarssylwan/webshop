@@ -25,7 +25,7 @@ class Cartpage extends Component {
 
   componentDidMount() {
     const localStorage = window.localStorage;
-    const items = JSON.parse(localStorage.getItem('cart'));
+    const items = JSON.parse(localStorage.getItem('cart')) || [];
     if (items.length > 0) {
       const itemIDs = items.map(item => item.item_id);
       this.fetchItems(itemIDs);
