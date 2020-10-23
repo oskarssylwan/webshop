@@ -1,9 +1,10 @@
 module.exports = {
+
   // Server setup
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3001,
 
   //Databse setup
-  db_location: process.env.MONGODB_URI,
+  db_location: process.env.MONGODB_URI || 'mongodb://mongodb:27017',
   payload_limit: '2000kb',
 
   //Password hashing

@@ -6,23 +6,23 @@ services:
     image: mongo:latest
     ports:
       - 27017:27017
-    container_name: SimpleCms-mongodb
+    container_name: webshop-demo-mongodb
 
-  backend:
-    build: ./packages/backend
+  api:
+    build: ./packages/api
     ports:
       - 3001:3001
     depends_on:
       - mongodb
     volumes:
-      - ./packages/backend:/home/backend
-    container_name: SimpleCms-backend
+      - ./packages/api:/home/api
+    container_name: webshop-demo-api
 
-  frontend:
-    build: ./packages/frontend
+  client:
+    build: ./packages/client
     ports:
       - 3000:3000
     volumes:
-      - ./packages/frontend:/app
-    container_name: SimpleCms-frontend
+      - ./packages/client:/app
+    container_name: webshop-demo-client
     stdin_open: true

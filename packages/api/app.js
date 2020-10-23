@@ -23,10 +23,10 @@ db.on('error', (err) => {
 mongoose.Promise = global.Promise;
 
 const itemRoutes = require('./routes/items');
-const userRoutes = require('./routes/users');
+// const userRoutes = require('./routes/users');
 const storeRoutes = require('./routes/store');
 app.use('/items', itemRoutes);
-app.use('/user', userRoutes);
+// app.use('/user', userRoutes);
 app.use('/store', storeRoutes);
 
 app.use((req, res, next) => {
