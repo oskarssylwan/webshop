@@ -1,0 +1,92 @@
+.block-basic {
+  overflow: hidden;
+  background: var(--color-gradient-gray);
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.block-basic .wrapper-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+
+  padding: var(--space-m);
+
+  font-size: .7rem;
+
+  transition: padding .3s;
+}
+
+.block-basic .wrapper-body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-l);
+}
+
+.block-basic .wrapper-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.block-basic .wrapper-secondary {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+
+  padding: var(--space-s) var(--space-m);
+
+  font-size: .7rem;
+  font-weight: bold;
+  color: var(--color-gray-70);
+
+  transition: padding .3s;
+  text-shadow: 0 1px 1px hsla(0, 0%, 50%, 0.1)
+}
+
+.block-basic .wrapper-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  opacity: 0;
+}
+
+/*------------------------------
+          HELPERS
+-----------------------------*/
+.block-basic.scale-07 > .wrapper-image > img {
+  transform: scale(.7);
+}
+
+
+/*------------------------------
+          Media Q
+-----------------------------*/
+
+@media (min-width: 1300px) {
+  .block-basic .wrapper-title {
+    padding: var(--space-l);
+  }
+
+  .block-basic .wrapper-secondary {
+    padding: var(--space-m) var(--space-m);
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "webshop-demo-api",
+  "version": "1.0.0",
+  "description": "REST API for webshop demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Oskars Sylwan",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.2",
+    "cloudinary": "^1.9.1",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.4",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "nodemon": "^2.0.4"
+  }
+}

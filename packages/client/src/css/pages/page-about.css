@@ -1,0 +1,96 @@
+.grid-about {
+  margin: var(--space-xxl) auto;
+  padding: 0 var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  background-size: cover;
+  background-position: -5vw -5px;
+
+  max-width: 500px;
+}
+
+.grid-about p,
+.grid-about span {font-family: 'Lora', serif; font-size: 1rem;}
+.grid-about span {margin-bottom: var(--space-m)}
+.grid-about span {display: inline-block}
+.grid-about .block {background: hsla(0, 0%, 100%, 1); transition: background 2s, color 1s;}
+
+.qoute::before,
+.qoute::after  {
+  content: "\"";
+  font-size: 2rem;
+  font-family: 'Sorts Mill Goudy', serif;
+  line-height: 1;
+}
+@media (min-width: 870px) {
+  .grid-about {
+    margin: var(--space-xxl) 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-about {
+    width: 72vw;
+    margin: var(--space-xxl) auto;
+    grid-template-columns: repeat(6, 12vw);
+    grid-template-rows: repeat(9, 12vw);
+    background-image: url('../../media/images/bg-about-2-lowres.jpg');
+
+    max-width: none;
+  }
+  .grid-about h1 {font-size: 2vw;}
+  .grid-about p,
+  .grid-about span {font-size: 1vw;}
+
+  .span-2{grid-column: span 2}
+  .span-3{grid-column: span 3}
+  .span-4{grid-column: span 4}
+  .grid-about .block:hover {background: hsla(0, 0%, 100%, 0); color: hsla(0, 0%, 100%, 0);}
+  .grid-about .block {border: var(--space-m) solid white;}
+  .grid-about .block-transparent {border: var(--space-m) solid white;}
+
+  .qoute::after  {
+    font-size: 2.4vw;
+  }
+
+  #about-qoute,
+  #about-p-fourth,
+  #about-p-third,
+  #about-p-second,
+  #about-p-first,
+  #about-story {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: var(--space-m);
+  }
+
+  #about-p-second {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  #about-p-third {
+    align-items: flex-end;
+    text-align: right;
+  }
+  #about-p-fourth {
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #about-p-fourth p,
+  #about-p-third p,
+  #about-p-second p,
+  #about-p-first p{width: 18vw;margin: 0;}
+  #about-qoute {
+    justify-content: center;
+    align-items: center;
+  }
+  #about-qoute p {width: 18vw;}
+
+}

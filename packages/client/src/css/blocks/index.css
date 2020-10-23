@@ -1,0 +1,34 @@
+/*-----------------
+    Block Sizes
+-----------------*/
+
+.block-size-s,
+.block-size-m {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.block-size-l,
+.block-size-xl {
+  grid-column: span 4;
+  grid-row: span 4;
+}
+
+@media (min-width:870px) {
+  .block-size-s {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .block-size-l {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+
+  .block-size-xl {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+
+
+}

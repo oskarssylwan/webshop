@@ -1,0 +1,27 @@
+{
+  "name": "webshop-demo",
+  "version": "1.0.0",
+  "description": "Web shop demo for a fictitious clothing brand",
+  "main": "index.js",
+  "scripts": {
+    "install:client": "npm install --prefix packages/client",
+    "install:api": "npm install --prefix packages/api",
+    "install:packages": "run-s install:api install:client",
+    "start:client": "npm run start --prefix packages/client",
+    "start:api": "npm run start --prefix packages/api",
+    "start:packages": "run-p start:api start:client",
+    "build:client": "npm run build --prefix packages/client",
+    "build:packages": "run-p build:client"
+  },
+  "keywords": [],
+  "author": "Oskars Sylwan",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-react": "^7.20.6",
+    "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5"
+  }
+}

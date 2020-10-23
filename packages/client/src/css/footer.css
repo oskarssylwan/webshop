@@ -1,0 +1,13 @@
+#footer-main {
+  display: flex;
+  padding: var(--space-xl) 0;
+  justify-content: space-between;
+}
+#footer-main > nav {display: none}
+
+
+@media (min-width: 630px) {
+  #footer-main > nav {
+    display:block
+  }
+}

@@ -1,0 +1,105 @@
+
+.wrapper-cart {
+  margin: var(--space-xxl) auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrapper-cart h1 {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  width: 100%;
+}
+
+.wrapper-cart .button {
+  margin-left: var(--space-xl)
+}
+
+
+.wrapper-cart .item-list {width: 100%;}
+.wrapper-cart .item-list h3 {margin-bottom: 0;}
+.wrapper-cart .item-list span {display: inline-block; margin-bottom: var(--space-s); }
+.wrapper-cart .item-list li {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: var(--space-xl);
+}
+
+.wrapper-cart .item-list li .wrapper-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: var(--space-m);
+}
+.wrapper-cart .item-list li .wrapper-info a {
+  color: black;
+}
+
+.wrapper-cart .wrapper-img{
+  width: 80px;
+  height: 80px;
+  background: var(--color-gradient-gray);
+}
+
+.wrapper-cart .wrapper-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wrapper-cart .wrapper-info {
+  flex: 1;
+}
+.cart-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.wrapper-cart .wrapper-button {
+  width: 20px;
+  margin-right: var(--space-m);
+}
+.wrapper-cart .wrapper-button .button-remove-item {
+  width:20px;
+  height: 20px;
+  background-image: url('../../media/icons/minus.svg');
+  background-size: contain;
+  background-color: hsla(0,0%,0%, 0);
+  border: none;
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 870px) {
+  .wrapper-cart {margin: var(--space-xxl) 0}
+  .wrapper-cart h1 {text-align: left}
+  .wrapper-cart .item-list {width: 550px;}
+  .cart-info {
+    flex: 1;
+    border-left: 1px solid black;
+    padding-left: var(--space-l);
+    align-items: flex-start;
+  }
+
+  .wrapper-cart .wrapper-button {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    margin-right: var(--space-l);
+
+  }
+  .wrapper-cart .wrapper-button .button-remove-item {
+    width:30px;
+    height: 30px;
+    transition: opacity .5s, transform.5s;
+    opacity: 0;
+  }
+
+  .wrapper-cart .item-list li:hover > .wrapper-button .button-remove-item {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+}
