@@ -1,0 +1,37 @@
+{
+  "hosted-zone:account=322874034009:domainName=oskarssylwan.com:region=eu-north-1": {
+    "Id": "/hostedzone/Z02498433GSRVY0I4INT5",
+    "Name": "oskarssylwan.com."
+  },
+  "vpc-provider:account=322874034009:filter.isDefault=true:region=eu-north-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-50df1939",
+    "vpcCidrBlock": "172.31.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-b88e49d1",
+            "cidr": "172.31.16.0/20",
+            "availabilityZone": "eu-north-1a",
+            "routeTableId": "rtb-2ce32245"
+          },
+          {
+            "subnetId": "subnet-6bed0b10",
+            "cidr": "172.31.32.0/20",
+            "availabilityZone": "eu-north-1b",
+            "routeTableId": "rtb-2ce32245"
+          },
+          {
+            "subnetId": "subnet-6d999827",
+            "cidr": "172.31.0.0/20",
+            "availabilityZone": "eu-north-1c",
+            "routeTableId": "rtb-2ce32245"
+          }
+        ]
+      }
+    ]
+  }
+}

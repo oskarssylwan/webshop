@@ -29,6 +29,10 @@ app.use('/items', itemRoutes);
 app.use('/user', userRoutes);
 app.use('/store', storeRoutes);
 
+app.get('/status', (req, res) => {
+  res.json('Server is live!')
+})
+
 app.use((req, res, next) => {
   const error = new Error('Route not found');
   error.status = 404;
