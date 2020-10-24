@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/home/ec2-user/webshop/packages/api
-ExecStart=/home/ec2-user/.nvm/versions/node/v14.8.0/bin/node /home/ec2-user/webshop/packages/api/src/index.js
+ExecStart=/home/ec2-user/.nvm/versions/node/v14.8.0/bin/node /home/ec2-user/webshop/packages/api/src/app.js
 Restart=on-failure
 
 [Install]
