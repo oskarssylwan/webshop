@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const webToken = require('jsonwebtoken');
 const morgan = require('morgan');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const app = express();
 
 app.use(bodyParser.json({limit: config.payload_limit}));
@@ -12,13 +13,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('dev'));
 app.use(cors());
 
-const mongoose = require('mongoose');
-mongoose.connect(config.db_location, {useMongoClient: true});
-const db = mongoose.connection;
+const connectWithRetry = () => {
+  mongoose.connect(config.db_location, {useMongoClient: true}, error => {
+    if (error) {
+      console.error(`Failed to connect to DB at ${config.db_location} retrying...`);
+      setTimeout(connectWithRetry, 5000)
+    }
+  });
+}
 
-db.on('error', (err) => {
-  console.error('DB connection error:', err);
-});
+connectWithRetry()
 
 mongoose.Promise = global.Promise;
 

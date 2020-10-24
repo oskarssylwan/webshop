@@ -27,4 +27,4 @@ cp /home/ec2-user/webshop/packages/infrastructure/scripts/api.service /lib/syste
 
 # Start services
 su - ec2-user -c "sudo systemctl daemon-reload"
-su - ec2-user -c "sudo systemctl enable api.service"
+su - ec2-user -c "sudo systemctl start api.service"
