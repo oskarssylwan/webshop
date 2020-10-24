@@ -2,7 +2,7 @@
   "name": "infrastrukture",
   "version": "0.1.0",
   "bin": {
-    "infrastrukture": "bin/webshop.js"
+    "infrastructure": "bin/webshop.js"
   },
   "scripts": {
     "build": "tsc",

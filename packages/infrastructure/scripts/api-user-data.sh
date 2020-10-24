@@ -1,5 +1,4 @@
 #!/bin/bash
-
 sudo yum update -y
 
 # Node and npm
@@ -24,8 +23,8 @@ su - ec2-user -c "npm install --prefix webshop"
 su - ec2-user -c "npm run install:api --prefix webshop"
 
 # Install systemd service
-cp /home/ec2-user/webshop-demo/packages/api/scripts/api.service /lib/systemd/system/
+cp /home/ec2-user/webshop/packages/infrastructure/scripts/api.service /lib/systemd/system/
 
 # Start services
 su - ec2-user -c "sudo systemctl daemon-reload"
-su - ec2-user -c "sudo systemctl start api.service"
+su - ec2-user -c "sudo systemctl enable api.service"
