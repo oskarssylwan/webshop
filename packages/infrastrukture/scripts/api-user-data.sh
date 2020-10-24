@@ -13,15 +13,15 @@ sudo yum install git -y
 
 # Clone codebase
 cd /home/ec2-user
-su - ec2-user -c "git clone https://github.com/oskarssylwan/webshop-demo.git"
-su - ec2-user -c "cd /home/ec2-user/webshop-demo"
+su - ec2-user -c "git clone https://github.com/oskarssylwan/webshop.git"
+su - ec2-user -c "cd /home/ec2-user/webshop"
 
 # Get .env file ssh token
-aws s3 cp s3://env.webshop.oskarssylwan.com/.env /home/ec2-user/webshop-demo/packages/api/.env
+aws s3 cp s3://env.webshop.oskarssylwan.com/.env /home/ec2-user/webshop/packages/api/.env
 
 # Install dependencies
-su - ec2-user -c "npm install --prefix webshop-demo"
-su - ec2-user -c "npm run install:api --prefix webshop-demo"
+su - ec2-user -c "npm install --prefix webshop"
+su - ec2-user -c "npm run install:api --prefix webshop"
 
 # Install systemd service
 cp /home/ec2-user/webshop-demo/packages/api/scripts/api.service /lib/systemd/system/
