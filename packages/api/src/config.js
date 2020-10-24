@@ -3,7 +3,7 @@ module.exports = {
   enviorment: process.env.ENVIORMENT || 'development',
 
   // Server setup
-  port: process.env.PORT || 3001,
+  port: process.env.PORT || 80,
   admin_email: process.env.ADMIN_EMAIL || 'dev@dev.com',
 
   //Databse setup

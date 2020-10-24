@@ -10,6 +10,8 @@ services:
 
   api:
     build: ./packages/api
+    environment:
+    - PORT=3001
     ports:
       - 3001:3001
     depends_on:
