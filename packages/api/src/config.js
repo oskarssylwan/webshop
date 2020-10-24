@@ -1,10 +1,13 @@
 module.exports = {
 
+  enviorment: process.env.ENVIORMENT || 'development',
+
   // Server setup
   port: process.env.PORT || 3001,
+  admin_email: process.env.ADMIN_EMAIL || 'dev@dev.com',
 
   //Databse setup
-  db_location: process.env.MONGODB_URI || 'mongodb://mongodb:27017',
+  db_location: process.env.MONGODB_URI || 'mongodb://mongodb:27017/webshop',
   payload_limit: '2000kb',
 
   //Password hashing

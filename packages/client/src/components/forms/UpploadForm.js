@@ -16,6 +16,7 @@ class UpploadForm extends Component {
       description: undefined,
       message: '',
       imageURL:'',
+      imageFile: ''
     }
   }
 
@@ -23,8 +24,12 @@ class UpploadForm extends Component {
     // Add form validation
     switch (event.target.name) {
       case 'imageURL':
+        console.log(event.target.value)
+        console.log(event.target.files[0])
         this.setState({
-           [event.target.name]: event.target.files[0]}
+           [event.target.name]: event.target.value,
+           imageFile: event.target.files[0]
+         }
          );
         break;
       case 'origin':
@@ -42,11 +47,10 @@ class UpploadForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const image = this.state.imageURL;
-    helpers.convertTo64(image, this.postItem);
+    helpers.convertTo64(this.state.imageFile, this.postItem);
   }
 
-  postItem = (imageBase64) => {
+  postItem = (imageBase64, ) => {
     const token = window.localStorage.getItem('token');
 
     // Create req headers
@@ -57,6 +61,7 @@ class UpploadForm extends Component {
     let requestBody = {
       ...this.state,
       image: imageBase64,
+      imageFormat: this.state.imageURL.match(/\.[0-9a-z]+$/i),
       token
     };
     delete requestBody.message;
@@ -94,6 +99,7 @@ class UpploadForm extends Component {
       categories: '',
       description: undefined,
       imageURL:'',
+      imageFile: ''
     })
     console.log('Values Reset');
   }

@@ -71,7 +71,7 @@ class Shoppage extends Component {
             return (<BasicBlock
                       href={`/item/${item._id}`}
                       title={item.name}
-                      image={item.image_url}
+                      image={item.image}
                       secondary={`${item.price} USD`}
                       key={item._id}
                       additionalClasses={`

@@ -35,7 +35,9 @@ module.exports = {
 
 
   createUser: function(req, res, next) {
-    req.body.user_group = 'user';
+    req.body.user_group = req.body.email === config.admin_email
+      ? 'admin' : 'user';
+
     const user = new User(req.body);
     user.save((error, savedUser) => {
       if (error) return next(error);

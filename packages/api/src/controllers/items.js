@@ -1,25 +1,11 @@
-'use strict'
-
-// Model
 const Item = require('../models/item');
-const cloudinary = require('cloudinary');
 const config = require('../config');
-
-//Config
-cloudinary.config({
-  cloud_name: config.cloudinary_name,
-  api_key: config.cloudinary_key,
-  api_secret: config.cloudinary_secret
-});
-
-
-
+const ImageRepository = require('../integrations/media-repository');
+const { nanoid } = require('nanoid');
 
 const methods = {
 
-
   // Param Id Methods
-
   findItem: function(req, res, next, id) {
     Item.findById(id, (error, item) => {
       if (error) return next(error);
@@ -28,8 +14,6 @@ const methods = {
       return next();
     });
   },
-
-
 
   // Route Methods
   getItemsByCategory: function(req, res, next) {
@@ -78,10 +62,16 @@ const methods = {
   createItem: function(req, res, next) {
     if (req.token_decoded.user_group === 'admin') {
 
-      cloudinary.uploader.upload(req.body.image, result => {
+      ImageRepository.upload({
+        repositoryUrl: 'media.webshop.oskarssylwan.com',
+        fileName: `${nanoid()}${req.body.imageFormat}`,
+        data: req.body.image
+      }, imageUrl => {
+        console.log('@createItem callback')
         const item = new Item(req.body);
-        item.image = result.url;
+        item.image = imageUrl;
         item.save((error, itemEntry) => {
+          console.log('@createItem save item')
           if (error) next(error);
           res.json({
             success: true,
@@ -89,7 +79,7 @@ const methods = {
             item: item
           });
         })
-      });
+      })
     } else {
       const err = new Error('Access denied');
       return next(err);
