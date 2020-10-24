@@ -1,0 +1,12 @@
+[Unit]
+Description=Node API Service
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/home/ec2-user/cms/packages/backend
+ExecStart=/home/ec2-user/.nvm/versions/node/v14.8.0/bin/node /home/ec2-user/webshop-demo/packages/api/src/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
