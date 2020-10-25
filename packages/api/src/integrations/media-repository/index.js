@@ -9,11 +9,11 @@ const createDevImageRepository = () => ({
 })
 
 const createProdImageRepository = () => ({
-  upload: (({ fileName, data }), fn) => {
+  upload: (image, fn) => {
     const params = {
       Bucket: 'media.webshop.oskarssylwan.com',
-      Key: fileName,
-      Body: data
+      Key: image.fileName,
+      Body: image.data
     };
     s3.upload(params, function(err, data) {
       console.log(err, data);
