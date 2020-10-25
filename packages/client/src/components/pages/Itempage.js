@@ -82,7 +82,7 @@ class Itempage extends Component {
         <main id='content-main' className='container'>
           <div id="page-item" className='container'>
               <BasicBlock
-                image={item.image_url}
+                image={item.image}
                 additionalClasses='image-wrapper scale-07'
               />
             <div className="item-info">
