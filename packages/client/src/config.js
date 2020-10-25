@@ -2,7 +2,6 @@ export const setup = {
   api_location:  process.env.REACT_APP_API_LOCATION || 'http://localhost:3001'
 }
 
-
 export const routes = {
   // Items
   create_item: setup.api_location + '/items',

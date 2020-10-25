@@ -4,6 +4,7 @@ import * as cdk from '@aws-cdk/core';
 import { WebShopStack } from '../lib/webshop-stack';
 
 const app = new cdk.App();
+
 new WebShopStack(app, 'WebShopStack', {
   enviormentName: 'webshop',
   domainName: 'oskarssylwan.com',

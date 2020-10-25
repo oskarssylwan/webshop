@@ -16,7 +16,7 @@ su - ec2-user -c "git clone https://github.com/oskarssylwan/webshop.git"
 su - ec2-user -c "cd /home/ec2-user/webshop"
 
 # Get .env file ssh token
-aws s3 cp s3://env.webshop.oskarssylwan.com/.env /home/ec2-user/webshop/packages/api/.env
+aws s3 cp s3://env.api.webshop.oskarssylwan.com/.env /home/ec2-user/webshop/packages/api/.env
 
 # Install dependencies
 su - ec2-user -c "npm install --prefix webshop"
