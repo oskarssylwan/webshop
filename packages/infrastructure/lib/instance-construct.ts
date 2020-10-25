@@ -11,7 +11,7 @@ interface StackProps extends cdk.StackProps {
   enviormentVariables?: s3Deploy.ISource;
   userDataFullPath: string;
   access?: ec2.SubnetType;
-  connections?: [ec2.IConnectable, ec2.Port, string][]
+  connections?: [ec2.IConnectable, ec2.Port][]
 }
 
 export class Instance extends cdk.Construct {
@@ -28,7 +28,7 @@ export class Instance extends cdk.Construct {
       userDataFullPath,
       access = ec2.SubnetType.PUBLIC,
       connections = [
-        [ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow access from the world at port 80']
+        [ec2.Peer.anyIpv4(), ec2.Port.tcp(80)]
       ]
     }: StackProps
   ) {

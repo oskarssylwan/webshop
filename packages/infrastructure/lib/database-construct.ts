@@ -6,7 +6,7 @@ import * as path from 'path';
 interface StackProps extends cdk.StackProps {
   enviormentName: string;
   domainName: string;
-  connections?: [ec2.IConnectable, ec2.Port, string][]
+  connections?: [ec2.IConnectable, ec2.Port][]
 }
 
 export class Database extends cdk.Construct {

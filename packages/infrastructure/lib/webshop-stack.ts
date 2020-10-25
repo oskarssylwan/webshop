@@ -30,7 +30,7 @@ export class WebShopStack extends cdk.Stack {
       enviormentName: props.enviormentName,
       domainName: props.domainName,
       connections: [
-        [api.instance, ec2.Port.tcp(27017), 'Allow access from the world to mongodb']
+        [ec2.Peer.ipv4(`${api.instance.instancePublicIp}/32`) , ec2.Port.tcp(27017)]
       ]
     })
 
