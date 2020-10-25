@@ -63,7 +63,6 @@ const methods = {
     if (req.token_decoded.user_group === 'admin') {
 
       ImageRepository.upload({
-        repositoryUrl: 'media.webshop.oskarssylwan.com',
         fileName: `${nanoid()}${req.body.imageFormat}`,
         data: req.body.image
       }, imageUrl => {
