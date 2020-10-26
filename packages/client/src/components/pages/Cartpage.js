@@ -75,7 +75,7 @@ class Cartpage extends Component {
         return this.state.items.map(item => {
           return (<li key={item._id}>
                       <div className='wrapper-img'>
-                        <img src={item.image_url} alt={item.name} />
+                        <img src={item.image} alt={item.name} />
                       </div>
                       <div className='wrapper-info'>
                         <span className='light'>{`QNT: 2 | 20:- USD`}</span>
