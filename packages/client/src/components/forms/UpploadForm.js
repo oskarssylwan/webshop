@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { routes } from  '../../config.js'
-import helpers from '../../helpers.js'
+import { convertTo64 } from '../../helpers.js'
 import '../../css/login.css'
 
-class UpploadForm extends Component {
+export class UpploadForm extends Component {
 
   constructor(props) {
     super(props)
@@ -42,7 +42,7 @@ class UpploadForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    helpers.convertTo64(this.state.imageFile, this.postItem);
+    convertTo64(this.state.imageFile, this.postItem);
   }
 
   postItem = (imageBase64, ) => {
@@ -111,5 +111,3 @@ class UpploadForm extends Component {
     );
   }
 }
-
-export default UpploadForm;

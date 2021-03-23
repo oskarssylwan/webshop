@@ -1,19 +1,19 @@
 import React from 'react'
-import '../css/grid-square.css'
-import '../css/pages/page-home.css'
-import BasicBlock from './blocks/BasicBlock.js'
-import ContactForm from './forms/ContactForm.js'
-import Instagram from '../icons/Instagram.js'
-import Facebook from '../icons/Facebook.js'
-import Snapchat from '../icons/Snapchat.js'
-import Youtube from '../icons/Youtube.js'
+import { BasicBlock } from './blocks/BasicBlock.js'
+import { ContactForm } from './forms/ContactForm.js'
+import { Instagram } from '../icons/Instagram.js'
+import { Facebook } from '../icons/Facebook.js'
+import { Snapchat } from '../icons/Snapchat.js'
+import { YouTube } from '../icons/Youtube.js'
 import shop from '../media/images/1x1/shop.jpg'
 import tops from '../media/images/1x1/tops.png'
 import shoes from '../media/images/1x1/shoes.png'
 import bags from '../media/images/1x1/bags.png'
 import accessories from '../media/images/1x1/accessories.png'
+import '../css/grid-square.css'
+import '../css/pages/page-home.css'
 
-const LandingGrid = () => (
+export const LandingGrid = () => (
   <div className="grid-square">
 
     <BasicBlock
@@ -86,7 +86,7 @@ const LandingGrid = () => (
       title="social"
       secondary={
         <div>
-          <a href="/"><Youtube classes="social-icons"/></a>
+          <a href="/"><YouTube classes="social-icons"/></a>
           <a href="/"><Snapchat classes="social-icons"/></a>
           <a href="/"><Instagram classes="social-icons"/></a>
           <a href="/"><Facebook classes="social-icons"/></a>
@@ -145,5 +145,3 @@ const LandingGrid = () => (
   </div>
 
 )
-
-export default LandingGrid

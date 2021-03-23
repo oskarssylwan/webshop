@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { routes } from  '../../config.js';
-import { CSSTransitionGroup } from 'react-transition-group';
-import { Link } from 'react-router-dom';
-import '../../css/pages/page-cart.css';
-//Components
-import Header from '../Header';
-import Footer from '../Footer';
+import React, { Component } from 'react'
+import { routes } from  '../../config.js'
+import { CSSTransitionGroup } from 'react-transition-group'
+import { Link } from 'react-router-dom'
+import '../../css/pages/page-cart.css'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 
-
-class Cartpage extends Component {
+export class Cartpage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -135,5 +133,3 @@ class Cartpage extends Component {
     );
   }
 }
-
-export default Cartpage;

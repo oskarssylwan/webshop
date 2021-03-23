@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class ContactForm extends Component {
+export class ContactForm extends Component {
 
   constructor(props) {
     super(props)
@@ -47,5 +47,3 @@ class ContactForm extends Component {
     );
   }
 }
-
-export default ContactForm;

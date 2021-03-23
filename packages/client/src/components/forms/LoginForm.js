@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { routes } from  '../../config.js'
-import helpers from '../../helpers.js'
+import { isAdmin } from '../../helpers.js'
 import '../../css/login.css'
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
 
   constructor(props) {
     super(props)
@@ -61,7 +61,7 @@ class LoginForm extends Component {
 
   redirect = () => {
     console.log(window.localStorage.token)
-    if(helpers.isAdmin(window.localStorage.token)) {
+    if(isAdmin(window.localStorage.token)) {
       window.location = '/admin'
     } else {
       window.location = '/'
@@ -81,5 +81,3 @@ class LoginForm extends Component {
     );
   }
 }
-
-export default LoginForm;

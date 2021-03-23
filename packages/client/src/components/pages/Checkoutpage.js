@@ -1,9 +1,9 @@
 import React from 'react'
 import '../../css/pages/page-contact.css'
-import Header from '../Header'
-import Footer from '../Footer'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 
-const Checkoutpage = () => (
+export const Checkoutpage = () => (
   <div className="page">
     <Header />
     <main id="content-main" className="container">
@@ -15,5 +15,3 @@ const Checkoutpage = () => (
     <Footer />
   </div>
 )
-
-export default Checkoutpage

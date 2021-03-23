@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import {routes} from  '../../config.js';
+import React, { Component } from 'react'
+import {routes} from  '../../config.js'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
+import { BasicBlock } from '../blocks/BasicBlock.js'
 import '../../css/pages/page-item.css'
 
-//Components
-import Header from '../Header';
-import Footer from '../Footer';
-import BasicBlock from '../blocks/BasicBlock.js';
-
-class Itempage extends Component {
+export class Itempage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -120,5 +118,3 @@ class Itempage extends Component {
     );
   };
 }
-
-export default Itempage;

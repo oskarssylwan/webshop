@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from '../Header'
-import Footer from '../Footer'
-import UpploadForm from '../forms/UpploadForm'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
+import { UpploadForm } from '../forms/UpploadForm'
 import '../../css/login.css'
 
-const Adminpage = () => (
+export const Adminpage = () => (
   <div className="page">
     <Header />
     <main id="content-main" className="container">
@@ -15,5 +15,3 @@ const Adminpage = () => (
     <Footer />
   </div>
 )
-
-export default Adminpage

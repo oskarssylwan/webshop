@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { CSSTransitionGroup } from 'react-transition-group'
-import '../css/hero.css'
 import cover from '../media/images/cover.jpg'
+import '../css/hero.css'
 
-const Hero = () => (
+export const Hero = () => (
   <CSSTransitionGroup
     component="div"
     transitionName="fade-in-hero"
@@ -25,5 +25,3 @@ const Hero = () => (
     </div>
   </CSSTransitionGroup>
 )
-
-export default Hero

@@ -1,11 +1,9 @@
 import React from 'react'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 import '../../css/pages/page-stores.css'
 
-//Components
-import Header from '../Header'
-import Footer from '../Footer'
-
-const Storepage = () => (
+export const Storepage = () => (
   <div className="page">
     <Header />
     <main id="content-main" className="container">
@@ -31,5 +29,3 @@ const Storepage = () => (
     <Footer />
   </div>
 )
-
-export default Storepage

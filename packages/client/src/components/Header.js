@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import '../css/header.css';
+import React, { Component } from 'react'
+import { NavigationMain } from './NavigationMain'
+import { Logo } from './Logo'
+import { MenuButton } from './MenuButton'
+import '../css/header.css'
 
-//Components
-import NavigationMain from './NavigationMain';
-import Logo from './Logo';
-import MenuButton from './MenuButton';
-
-class Header extends Component {
+export class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,5 +28,3 @@ class Header extends Component {
     );
   }
 }
-
-export default Header;

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { routes } from  '../../config.js'
+import { Header} from '../Header'
+import { Footer } from '../Footer'
+import { BasicBlock } from '../blocks/BasicBlock'
+import { Loading } from '../../icons/Loading'
 import '../../css/grid-square.css'
 import '../../css/pages/page-shop.css'
-import Header from '../Header'
-import Footer from '../Footer'
-import BasicBlock from '../blocks/BasicBlock'
-import Loading from '../../icons/Loading'
 
-
-class Shoppage extends Component {
+export class Shoppage extends Component {
 
   constructor(props) {
     super(props)
@@ -133,5 +132,3 @@ class Shoppage extends Component {
     );
   }
 }
-
-export default Shoppage

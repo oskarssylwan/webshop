@@ -2,10 +2,10 @@
   "root": true,
   "env": {
     "browser": true,
-    "es6": true,
     "node": true,
     "jest": true,
-    "cypress/globals": true
+    "cypress/globals": true,
+    "es2021": true
   },
   "globals": {
     "Atomics": "readonly",

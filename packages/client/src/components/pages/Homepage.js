@@ -1,12 +1,10 @@
 import React from 'react'
+import { Header } from '../Header'
+import { Hero } from '../Hero'
+import { LandingGrid } from '../LandingGrid'
+import { Footer } from '../Footer'
 
-//Components
-import Header from '../Header'
-import Hero from '../Hero'
-import LandingGrid from '../LandingGrid'
-import Footer from '../Footer'
-
-const Homepage = () => (
+export const Homepage = () => (
   <div className="page">
     <Header />
     <main id="content-main" className="container">
@@ -16,5 +14,3 @@ const Homepage = () => (
     <Footer />
   </div>
 )
-
-export default Homepage

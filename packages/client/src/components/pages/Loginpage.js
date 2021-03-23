@@ -1,11 +1,10 @@
 import React from 'react'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
+import { LoginForm } from '../forms/LoginForm'
 import '../../css/login.css'
-//Components
-import Header from '../Header'
-import Footer from '../Footer'
-import LoginForm from '../forms/LoginForm'
 
-const Loginpage = () => (
+export const Loginpage = () => (
   <div className="page">
     <Header />
     <main id="content-main" className="container">
@@ -16,5 +15,3 @@ const Loginpage = () => (
     <Footer />
   </div>
 )
-
-export default Loginpage

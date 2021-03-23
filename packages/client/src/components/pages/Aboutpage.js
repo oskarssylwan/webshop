@@ -1,10 +1,9 @@
 import React from 'react'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 import '../../css/pages/page-about.css'
-//Components
-import Header from '../Header'
-import Footer from '../Footer'
 
-const Aboutpage = () => (
+export const Aboutpage = () => (
   <div className="page">
     <Header />
     <main id="content-main" className="container">
@@ -64,5 +63,3 @@ const Aboutpage = () => (
     <Footer />
   </div>
 )
-
-export default Aboutpage

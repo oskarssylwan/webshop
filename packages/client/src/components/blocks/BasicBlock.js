@@ -4,7 +4,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 import '../../css/blocks/block-basic.css'
 import '../../css/blocks/index.css'
 
-const BasicBlock = (props) => (
+export const BasicBlock = (props) => (
   <CSSTransitionGroup
     component="div"
     transitionName="fade-and-scale-in"
@@ -37,5 +37,3 @@ const BasicBlock = (props) => (
     </div>
   </CSSTransitionGroup>
 )
-
-export default BasicBlock

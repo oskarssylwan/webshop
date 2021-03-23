@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/navigation.css'
 
-const Navigation = (props) => (
+export const Navigation = (props) => (
   <nav className={props.classes} >
     <Link to="/shop">Shop</Link>
     <Link to="/about">About</Link>
@@ -11,5 +11,3 @@ const Navigation = (props) => (
     <Link to="/cart">Cart</Link>
   </nav>
 )
-
-export default Navigation
