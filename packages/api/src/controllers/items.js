@@ -41,8 +41,7 @@ const methods = {
     } else {
       Item.find({}, (error, items) => {
         if (error) return next(error)
-        if (items.length <= 0) return next(new Error('No items found'))
-        res.json(items)
+        res.json(items || [])
       }
       )
     }
