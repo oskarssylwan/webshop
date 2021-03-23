@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 export class ContactForm extends Component {
 
@@ -13,13 +13,13 @@ export class ContactForm extends Component {
   };
 
   onInputChange = event => {
-    this.setState({[event.target.name]: event.target.value});
-  };
+    this.setState({[event.target.name]: event.target.value})
+  }
 
   onSubmit = event => {
-    event.preventDefault();
-    this.setState({message: 'Message Sent!'});
-    this.resetValues();
+    event.preventDefault()
+    this.setState({message: 'Message Sent!'})
+    this.resetValues()
   }
 
   resetValues = () => {
@@ -31,19 +31,18 @@ export class ContactForm extends Component {
     })
   }
 
-
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <input name='name' type='text' onChange={this.onInputChange} value={this.state.name} placeholder='Name' required/>
-        <input name='email' type='text' onChange={this.onInputChange} value={this.state.email} placeholder='Email' required/>
-        <input name='subject' type='text' onChange={this.onInputChange} value={this.state.subject} placeholder='Subject' required/>
-        <textarea name='contactMessage' onChange={this.onInputChange} value={this.state.contactMessage} placeholder='Message' required/>
-        <fieldset className='buttons'>
-          <span className='message'>{this.state.message}</span>
-          <button type='submit'>Send</button>
+        <input name="name" type="text" onChange={this.onInputChange} value={this.state.name} placeholder="Name" required/>
+        <input name="email" type="text" onChange={this.onInputChange} value={this.state.email} placeholder="Email" required/>
+        <input name="subject" type="text" onChange={this.onInputChange} value={this.state.subject} placeholder="Subject" required/>
+        <textarea name="contactMessage" onChange={this.onInputChange} value={this.state.contactMessage} placeholder="Message" required/>
+        <fieldset className="buttons">
+          <span className="message">{this.state.message}</span>
+          <button type="submit">Send</button>
         </fieldset>
       </form>
-    );
+    )
   }
 }

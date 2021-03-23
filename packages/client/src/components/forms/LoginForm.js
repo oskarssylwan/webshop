@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { routes } from  '../../config.js'
+import { routes } from '../../config.js'
 import { isAdmin } from '../../helpers.js'
 import '../../css/login.css'
 
@@ -22,7 +22,7 @@ export class LoginForm extends Component {
     event.preventDefault()
     const requestHeaders = new Headers()
 
-    requestHeaders.append("Content-Type", "application/json")
+    requestHeaders.append('Content-Type', 'application/json')
 
     const requestBody = JSON.stringify({
       username: this.state.username,
@@ -30,7 +30,7 @@ export class LoginForm extends Component {
     })
 
     const options = {
-      method: "POST",
+      method: 'POST',
       body: requestBody,
       headers: requestHeaders
     }
@@ -38,7 +38,7 @@ export class LoginForm extends Component {
     fetch(routes.login, options)
       .then(response => response.json())
       .then(json => {
-        if(json.success) {
+        if (json.success) {
           localStorage.setItem('token', `${json.token}`)
           this.redirect()
         }
@@ -47,7 +47,7 @@ export class LoginForm extends Component {
 
       })
       .catch(err => {
-        this.setState({message: "Sorry, something went wrong..."})
+        this.setState({ message: 'Sorry, something went wrong...' })
         this.resetInputFields()
       })
   }
@@ -61,7 +61,7 @@ export class LoginForm extends Component {
 
   redirect = () => {
     console.log(window.localStorage.token)
-    if(isAdmin(window.localStorage.token)) {
+    if (isAdmin(window.localStorage.token)) {
       window.location = '/admin'
     } else {
       window.location = '/'
@@ -71,13 +71,13 @@ export class LoginForm extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <input name='username' type='text' onChange={this.onInputChange} value={this.state.username} placeholder='Username' required/>
-        <input name='password' type='password' onChange={this.onInputChange} value={this.state.password} placeholder='Password' required/>
-        <fieldset className='buttons'>
-          <span className='message'>{this.state.message}</span>
-          <button type='submit'>Login</button>
+        <input name="username" type="text" onChange={this.onInputChange} value={this.state.username} placeholder="Username" required/>
+        <input name="password" type="password" onChange={this.onInputChange} value={this.state.password} placeholder="Password" required/>
+        <fieldset className="buttons">
+          <span className="message">{this.state.message}</span>
+          <button type="submit">Login</button>
         </fieldset>
       </form>
-    );
+    )
   }
 }
