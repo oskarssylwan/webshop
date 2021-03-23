@@ -1,5 +1,6 @@
 # Web Shop Demo
-Web shop demo for a fictitious clothing brand
+Web shop demo for a fictitious clothing brand.
+This demo was built years ago at the start of my career.
 
 ## Getting started with development
 **Requirements**
@@ -10,8 +11,8 @@ Web shop demo for a fictitious clothing brand
 - docker-compose
 
 ```
-git clone https://github.com/oskarssylwan/webshop-demo.git
-cd webshop-demo
+git clone https://github.com/oskarssylwan/webshop.git
+cd webshop
 npm install
 npm run install:packages
 docker-compose up --build
