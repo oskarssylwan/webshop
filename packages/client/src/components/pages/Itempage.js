@@ -55,7 +55,7 @@ class Itempage extends Component {
   }
 
   fetchItem() {
-    fetch(routes.get_item + this.props.match.params.itemID)
+    fetch(routes.getItem + this.props.match.params.itemID)
       .then(res => res.json())
       .then(json => {
         this.setState({item: json.item})

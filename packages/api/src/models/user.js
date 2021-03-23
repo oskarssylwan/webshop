@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const config = require('../config.js');
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const config = require('../config.js')
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     type:     String,
     required: true
   },
-  user_group: {
+  userGroup: {
     type:     String,
     required: true
   },
@@ -27,54 +27,54 @@ const UserSchema = new mongoose.Schema({
     type: [{}],
     default: [{}]
   },
-  created_at: {
+  createdAt: {
     type: Date,
     required: true,
     default: Date.now
   }
-});
+})
+
+const User = mongoose.model('User', UserSchema)
 
 UserSchema.statics.authenticate = function(id, password, callback) {
   User.findOne({ $or: [{username: id}, {email: id}]})
-      .exec(function (error, user) {
-        if(error) {
-          return callback(error);
-        } else if (!user) {
-          const err = new Error('User not found');
-          err.status = 401;
-          return callback(err);
-        } else {
-          bcrypt.compare(password, user.password, function(error, result) {
-            if (result === true) {
-              return callback(null, user);
-            } else if (!result){
-              const err = new Error('Credentials do not match');
-              return callback(err);
-            } else {
-              console.log(result);
-              return callback(error);
-            }
-          });
-        }
-      });
-};
+    .exec((error, user) => {
+      if (error) {
+        return callback(error)
+      } else if (!user) {
+        const err = new Error('User not found')
+        err.status = 401
+        return callback(err)
+      } else {
+        bcrypt.compare(password, user.password, (error, result) => {
+          if (result === true) {
+            return callback(null, user)
+          } else if (!result){
+            const err = new Error('Credentials do not match')
+            return callback(err)
+          } else {
+            console.log(result)
+            return callback(error)
+          }
+        })
+      }
+    })
+}
 
 UserSchema.pre('save', function(next) {
-  let user = this;
-  if(user.password) {
-    bcrypt.hash(user.password, config.hash_rounds, function(error, hashed) {
+  const user = this
+  if (user.password) {
+    bcrypt.hash(user.password, config.hashRounds, (error, hashed) => {
       if (error) {
-        return next(error);
+        return next(error)
       } else {
-        user.password = hashed;
-          next();
+        user.password = hashed
+        next()
       }
-    });
+    })
   } else {
-    next();
+    next()
   }
-});
+})
 
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+module.exports = User

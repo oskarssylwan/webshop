@@ -1,20 +1,11 @@
 module.exports = {
-
   enviorment: process.env.ENVIORMENT || 'development',
-
-  // Server setup
   port: process.env.PORT || 80,
-  admin_email: process.env.ADMIN_EMAIL || 'dev@dev.com',
-
-  //Databse setup
-  db_location: process.env.MONGODB_URI || 'mongodb://mongodb:27017/webshop',
-  payload_limit: '2000kb',
-
-  //Password hashing
-  hash_rounds: process.env.HASH_ROUNDS || 10,
-
-  //Tokens
-  token_secret: process.env.TOKEN_SECRET || 'morello',
-  token_expire_time: process.env.TOKEN_EXPIRE_TIME || '1 day',
-
+  adminEmail: process.env.ADMIN_EMAIL || 'dev@dev.com',
+  dbLocation: process.env.MONGODB_URI || 'mongodb://mongodb:27017/webshop',
+  dbPayloadLimit: '2000kb',
+  hashRounds: process.env.HASH_ROUNDS || 10,
+  tokenSecret: process.env.TOKEN_SECRET || 'morello',
+  tokenExpireTime: process.env.TOKEN_EXPIRE_TIME || '1 day',
+  mediaUrl: process.env.MEDIA_URL || 'media.webshop.oskarssylwan.com'
 }

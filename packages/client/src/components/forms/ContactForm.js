@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 class ContactForm extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       name: '',
       email: '',

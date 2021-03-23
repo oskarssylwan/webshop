@@ -34,7 +34,7 @@ class Cartpage extends Component {
 
   fetchItems = (items) => {
     const query = items.join(',');
-    const url = routes.get_items_id + query;
+    const url = routes.getItemsId + query;
     fetch(url)
       .then(res => res.json())
       .then(json => {

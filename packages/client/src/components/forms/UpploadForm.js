@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import {routes} from  '../../config.js';
-import helpers from '../../helpers.js';
+import React, { Component } from 'react'
+import { routes } from  '../../config.js'
+import helpers from '../../helpers.js'
 import '../../css/login.css'
 
 class UpploadForm extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       name: '',
       price: '',
@@ -21,27 +22,21 @@ class UpploadForm extends Component {
   }
 
   onInputChange = event => {
-    // Add form validation
     switch (event.target.name) {
+
       case 'imageURL':
-        console.log(event.target.value)
-        console.log(event.target.files[0])
         this.setState({
            [event.target.name]: event.target.value,
            imageFile: event.target.files[0]
-         }
-         );
-        break;
+         })
+        break
+
       case 'origin':
-        this.setState({
-           [event.target.name]: event.target.value.toUpperCase()}
-         );
-        break;
+        this.setState({ [event.target.name]: event.target.value.toUpperCase() })
+        break
 
       default:
-        this.setState({
-           [event.target.name]: event.target.value}
-         );
+        this.setState({ [event.target.name]: event.target.value })
     }
   }
 
@@ -51,41 +46,35 @@ class UpploadForm extends Component {
   }
 
   postItem = (imageBase64, ) => {
-    const token = window.localStorage.getItem('token');
+    const token = window.localStorage.getItem('token')
+    const requestHeaders = new Headers()
+    requestHeaders.append("Content-Type", "application/json")
 
-    // Create req headers
-    const requestHeaders = new Headers();
-    requestHeaders.append("Content-Type", "application/json");
-
-    // Create req body
     let requestBody = {
       ...this.state,
       image: imageBase64,
       imageFormat: this.state.imageURL.match(/\.[0-9a-z]+$/i),
       token
-    };
-    delete requestBody.message;
-    requestBody.categories = requestBody.categories.split(' ');
-    requestBody = JSON.stringify(requestBody);
+    }
 
-    // Create fetch options
+    delete requestBody.message
+    requestBody.categories = requestBody.categories.split(' ')
+    requestBody = JSON.stringify(requestBody)
+
     const options = {
       method: "POST",
       body: requestBody,
       headers: requestHeaders
     }
 
-    // Make request
-    fetch(routes.create_item, options)
+    fetch(routes.createItem, options)
       .then(response => response.json())
       .then(json => {
-        console.log(json);
         this.setState({message: json.message});
         if (json.success) this.resetValues();
       })
       .catch(error => {
-        console.log(error);
-        this.setState({message: "Sorry, something went wrong..."})
+        this.setState({ message: "Sorry, something went wrong..." })
       })
   }
 
@@ -101,7 +90,6 @@ class UpploadForm extends Component {
       imageURL:'',
       imageFile: ''
     })
-    console.log('Values Reset');
   }
 
   render() {

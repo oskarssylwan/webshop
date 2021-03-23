@@ -1,4 +1,4 @@
 **/node_modules/**/*
 node_modules/**/*
-packages/frontend/build/
-packages/backend/build/
+packages/client/build/
+packages/api/build/

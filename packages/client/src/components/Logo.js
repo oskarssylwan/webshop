@@ -1,14 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import '../css/logo.css'
 
-const Logo  = () => {
-  return (
-    <Link to='/' href="#" className="logo">
+const Logo = () => (
+  <Link to="/" href="#" className="logo">
       Morello
-    </Link>
-  );
+  </Link>
+)
 
-};
-
-export default Logo;
+export default Logo

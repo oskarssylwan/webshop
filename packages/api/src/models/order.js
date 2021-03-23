@@ -1,17 +1,14 @@
-'use strict';
+const mongoose = require('mongoose')
 
-const mongoose = require('mongoose');
-
-// Schemas
 const OrderSchema = new mongoose.Schema({
-  made_by: {
+  madeBy: {
     type: String,
     required: true,
     trim: true
   },
   items: {
     type: [{
-      item_id: {
+      itemId: {
         type: String,
         required: true
       },
@@ -20,19 +17,15 @@ const OrderSchema = new mongoose.Schema({
         required: true
       }
     }],
-    required: true,
+    required: true
   },
   date: {
     type: Date,
     required: true,
     default: Date.now
   }
-});
+})
 
+const Order = mongoose.model('Order', OrderSchema)
 
-
-// Models
-const Order = mongoose.model('Order', OrderSchema);
-
-// Exports
-module.exports = Order;
+module.exports = Order

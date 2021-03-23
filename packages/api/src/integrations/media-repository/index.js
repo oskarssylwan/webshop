@@ -1,9 +1,8 @@
-const S3 = require('aws-sdk/clients/s3');
-const config = require('../../config.js');
+const S3 = require('aws-sdk/clients/s3')
+const config = require('../../config.js')
 
 const createDevImageRepository = () => ({
   upload: (_, fn) => {
-    console.log('@createDevImageRepository upload')
     fn('https://source.unsplash.com/random/350x350')
   }
 })
@@ -13,16 +12,15 @@ const createProdImageRepository = () => ({
     const s3 = new S3()
 
     const params = {
-      Bucket: 'media.webshop.oskarssylwan.com',
+      Bucket: config.mediaUrl,
       Key: image.fileName,
       Body: Buffer.from(image.data.split(',')[1], 'base64'),
       ContentType: 'image/png',
       ACL: 'public-read'
-    };
-    s3.upload(params, function(err, data) {
-      console.log(err, data);
+    }
+    s3.upload(params, (err, data) => {
       fn(data.Location)
-    });
+    })
   }
 })
 

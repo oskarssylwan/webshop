@@ -1,15 +1,12 @@
 export const setup = {
-  api_location:  process.env.REACT_APP_API_LOCATION || 'http://localhost:3001'
+  apiLocation:  process.env.REACT_APP_API_LOCATION || 'http://localhost:3001'
 }
 
+// Yeah this wasn't as usefull as I thought it would be....
 export const routes = {
-  // Items
-  create_item: setup.api_location + '/items',
-  get_item: setup.api_location + '/items/',
-  get_items_category: setup.api_location + '/items/?categories=',
-  get_items_id: setup.api_location + '/items/?itemIDs=',
-  // Yeah this wasn't as usefull as I thought it would be....
-
-  // Users
-  login: setup.api_location + '/user/authenticate'
+  createItem: `${setup.apiLocation}/items`,
+  getItem: `${setup.apiLocation}/items/`,
+  getItemsCategory: `${setup.apiLocation}/items/?categories=`,
+  getItemsId: `${setup.apiLocation}/items/?itemIDs=`,
+  login: `${setup.apiLocation}/user/authenticate`
 }

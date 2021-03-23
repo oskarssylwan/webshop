@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { routes } from  '../../config.js';
-import '../../css/grid-square.css';
-import '../../css/pages/page-shop.css';
-
-//Components
-import Header from '../Header';
-import Footer from '../Footer';
-import BasicBlock from '../blocks/BasicBlock';
-import Loading from '../../icons/Loading';
+import React, { Component } from 'react'
+import { routes } from  '../../config.js'
+import '../../css/grid-square.css'
+import '../../css/pages/page-shop.css'
+import Header from '../Header'
+import Footer from '../Footer'
+import BasicBlock from '../blocks/BasicBlock'
+import Loading from '../../icons/Loading'
 
 
 class Shoppage extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       items: [],
       fetchFailed: false
@@ -20,40 +19,39 @@ class Shoppage extends Component {
   }
 
   componentDidMount() {
-    this.fetchItems();
+    this.fetchItems()
   }
 
   buildFetchUrl = () => {
-    let url = routes.get_items_category;
-    const category = this.props.match.params.categories;
+    let url = routes.getItemsCategory
+    const category = this.props.match.params.categories
     if(category) {
       switch (category) {
         case 'accessories':
-          url += 'socks,glasses,watches,hats';
+          url += 'socks,glasses,watches,hats'
           break;
       case 'tops':
-        url += 'cardigans,shirts,tshirts,tops';
+        url += 'cardigans,shirts,tshirts,tops'
         break;
       case 'bottoms':
-        url += 'jeans,skirts,shorts';
+        url += 'jeans,skirts,shorts'
         break;
         default:
-          url += category;
+          url += category
       }
     }
-    return url;
+    return url
   }
 
   fetchItems = (callback) => {
-    const url = this.buildFetchUrl();
+    const url = this.buildFetchUrl()
     fetch(url)
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         if (json.message) {
           this.setState({fetchFailed: true})
         } else {
-          this.setState({items: json});
+          this.setState({items: json})
         }
 
       })
@@ -61,32 +59,33 @@ class Shoppage extends Component {
   }
 
   render() {
-
-    const items = this.state.items;
+    const items = this.state.items
 
     const renderItems = () => {
         if (items) {
 
           const itemsDom =  items.map(item => {
-            return (<BasicBlock
-                      href={`/item/${item._id}`}
-                      title={item.name}
-                      image={item.image}
-                      secondary={`${item.price} USD`}
-                      key={item._id}
-                      additionalClasses={`
-                        block-size-s
-                        cursor-style-pointer
-                        transition-scale
-                      `}
-                    />)
+            return (
+              <BasicBlock
+                href={`/item/${item._id}`}
+                title={item.name}
+                image={item.image}
+                secondary={`${item.price} USD`}
+                key={item._id}
+                additionalClasses={`
+                  block-size-s
+                  cursor-style-pointer
+                  transition-scale
+                `}
+              />
+            )
           })
 
           return (
-                  <div className='grid-square'>
-                    {itemsDom}
-                  </div>
-                )
+            <div className='grid-square'>
+              {itemsDom}
+            </div>
+          )
 
         }
     }
@@ -135,4 +134,4 @@ class Shoppage extends Component {
   }
 }
 
-export default Shoppage;
+export default Shoppage

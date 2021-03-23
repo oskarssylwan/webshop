@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
-
-import Homepage from './components/pages/Homepage';
-import Loginpage from './components/pages/Loginpage';
-import Adminpage from './components/pages/Adminpage';
-import Itempage from './components/pages/Itempage';
-import Aboutpage from './components/pages/Aboutpage';
-import Storepage from './components/pages/Storepage';
-import Shoppage from './components/pages/Shoppage';
-import Contactpage from './components/pages/Contactpage';
-import Cartpage from './components/pages/Cartpage';
-import Checkoutpage from './components/pages/Checkoutpage';
-
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import Homepage from './components/pages/Homepage'
+import Loginpage from './components/pages/Loginpage'
+import Adminpage from './components/pages/Adminpage'
+import Itempage from './components/pages/Itempage'
+import Aboutpage from './components/pages/Aboutpage'
+import Storepage from './components/pages/Storepage'
+import Shoppage from './components/pages/Shoppage'
+import Contactpage from './components/pages/Contactpage'
+import Cartpage from './components/pages/Cartpage'
+import Checkoutpage from './components/pages/Checkoutpage'
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loggedIn: false,
       token: '',
@@ -23,7 +21,7 @@ class App extends Component {
   }
 
   setToken = () => {
-    const localStorage = window.localStorage;
+    const localStorage = window.localStorage
     if (localStorage.getItem('token')) {
       this.setState({
         token: localStorage.getItem('token'),

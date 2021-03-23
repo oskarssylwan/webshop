@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import {routes} from  '../../config.js';
-import helpers from '../../helpers.js';
+import React, { Component } from 'react'
+import { routes } from  '../../config.js'
+import helpers from '../../helpers.js'
 import '../../css/login.css'
 
 class LoginForm extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       password: '',
       username: '',
@@ -14,49 +15,40 @@ class LoginForm extends Component {
   }
 
   onInputChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({[event.target.name]: event.target.value})
   }
 
-
   onSubmit = event => {
-    event.preventDefault();
-    const localstorage = window.localStorage;
+    event.preventDefault()
+    const requestHeaders = new Headers()
 
-    // Create req headers
-    const requestHeaders = new Headers();
-    requestHeaders.append("Content-Type", "application/json");
+    requestHeaders.append("Content-Type", "application/json")
 
-
-    // Create req body
     const requestBody = JSON.stringify({
       username: this.state.username,
       password: this.state.password
     })
 
-    // Create req options
     const options = {
       method: "POST",
       body: requestBody,
       headers: requestHeaders
     }
 
-    // Make request
     fetch(routes.login, options)
       .then(response => response.json())
       .then(json => {
         if(json.success) {
-          localStorage.setItem('token', `${json.token}`);
-          console.log(helpers.isAdmin(json.token))
-          this.redirect();
+          localStorage.setItem('token', `${json.token}`)
+          this.redirect()
         }
-        this.setState({message: json.message});
-        this.resetInputFields();
+        this.setState({message: json.message})
+        this.resetInputFields()
 
       })
       .catch(err => {
-        console.log(err);
         this.setState({message: "Sorry, something went wrong..."})
-        this.resetInputFields();
+        this.resetInputFields()
       })
   }
 
@@ -70,9 +62,9 @@ class LoginForm extends Component {
   redirect = () => {
     console.log(window.localStorage.token)
     if(helpers.isAdmin(window.localStorage.token)) {
-      window.location = '/admin';
+      window.location = '/admin'
     } else {
-      window.location = '/';
+      window.location = '/'
     }
   }
 

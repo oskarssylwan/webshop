@@ -6,14 +6,14 @@
     "node": true,
     "jest": true,
     "cypress/globals": true
-
   },
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 6,
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
@@ -33,15 +33,14 @@
     "no-new": ["error"],
     "no-new-func": ["error"],
     "no-new-wrappers": ["error"],
-    "no-param-reassign": ["error", { "props": true }],
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["req"] }],
     "no-return-assign": ["error"],
-    "no-self-assign": ["error"],
     "no-self-assign": ["error"],
     "require-await": ["error"],
     "yoda": ["error"],
     "no-undef": ["error"],
     "no-undef-init": ["error"],
-    "no-unused-vars": ["error"],
+    "no-unused-vars": ["error", { "args": "none" }],
     "no-use-before-define": ["error"],
     "global-require": ["error"],
     "array-bracket-spacing": ["error"],

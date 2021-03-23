@@ -1,17 +1,16 @@
-import React from 'react';
-import Navigation from './Navigation';
+import React from 'react'
+import Navigation from './Navigation'
 import '../css/navigation.css'
 
+const NavigationMain = (props) => {
 
-const NavigationMain  = (props) => {
-
-  const isOpen = props.isMenuOpen ? 'navigation-primary-open' : '';
-  const classes = `navigation-primary ${isOpen}`;
+  const isOpen = props.isMenuOpen ? 'navigation-primary-open' : ''
+  const classes = `navigation-primary ${isOpen}`
 
   return (
     <Navigation classes={classes} />
-  );
+  )
 
-};
+}
 
-export default NavigationMain;
+export default NavigationMain

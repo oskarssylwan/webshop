@@ -1,21 +1,12 @@
-'use strict';
+const express = require('express')
+const middleware = require('../middleware')
+const router = express.Router()
+const controller = require('../controllers/users')
 
-// Imports
-const express = require('express');
-const middleware = require('../middleware');
-const router = express.Router();
-const controller = require('../controllers/users');
+router.param('username', controller.findUser)
+router.get('/:username', controller.getUser)
+router.post('/', controller.createUser)
+router.post('/authenticate', controller.authenticateUser)
+router.put('/:username', middleware.protectedRoute, controller.updateUser)
 
-
-
-// Middleware
-router.param('username', controller.findUser);
-
-// Routes
-router.get('/:username', controller.getUser);
-router.post('/', controller.createUser);
-router.post('/authenticate', controller.authenticateUser);
-router.put('/:username', middleware.protected, controller.updateUser);
-
-// Exports
-module.exports = router;
+module.exports = router
