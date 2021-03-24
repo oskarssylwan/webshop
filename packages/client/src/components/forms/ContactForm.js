@@ -1,48 +1,31 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-export class ContactForm extends Component {
+export const ContactForm = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [subject, setSubject] = useState('')
+  const [contactMessage, setContactMessage] = useState('')
+  const [userFeedback, setUserFeedback] = useState('')
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: '',
-      email: '',
-      subject: '',
-      contactMessage: ''
-    }
-  };
-
-  onInputChange = event => {
-    this.setState({[event.target.name]: event.target.value})
-  }
-
-  onSubmit = event => {
+  const onSubmit = event => {
     event.preventDefault()
-    this.setState({message: 'Message Sent!'})
-    this.resetValues()
+    setName('')
+    setEmail('')
+    setSubject('')
+    setContactMessage('')
+    setUserFeedback('Message Sent!')
   }
 
-  resetValues = () => {
-    this.setState({
-      name: '',
-      email: '',
-      subject: '',
-      contactMessage: ''
-    })
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input name="name" type="text" onChange={this.onInputChange} value={this.state.name} placeholder="Name" required/>
-        <input name="email" type="text" onChange={this.onInputChange} value={this.state.email} placeholder="Email" required/>
-        <input name="subject" type="text" onChange={this.onInputChange} value={this.state.subject} placeholder="Subject" required/>
-        <textarea name="contactMessage" onChange={this.onInputChange} value={this.state.contactMessage} placeholder="Message" required/>
-        <fieldset className="buttons">
-          <span className="message">{this.state.message}</span>
-          <button type="submit">Send</button>
-        </fieldset>
-      </form>
-    )
-  }
+  return (
+    <form onSubmit={onSubmit}>
+      <input name="name" type="text" onChange={event => setName(event.target.value)} value={name} placeholder="Name" required/>
+      <input name="email" type="text" onChange={event => setEmail(event.target.value)} value={email} placeholder="Email" required/>
+      <input name="subject" type="text" onChange={event => setSubject(event.target.value)} value={subject} placeholder="Subject" required/>
+      <textarea name="contactMessage" onChange={event => setContactMessage(event.target.value)} value={contactMessage} placeholder="Message" required/>
+      <fieldset className="buttons">
+        <span className="message">{userFeedback}</span>
+        <button type="submit">Send</button>
+      </fieldset>
+    </form>
+  )
 }

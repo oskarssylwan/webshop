@@ -10,7 +10,7 @@ export const Storepage = () => (
       <div className="wrapper-stores">
         <h1>Our Stores</h1>
         <ul>
-          <li className="bold" >Stockholm</li>
+          <li className="bold">Stockholm</li>
           <li>Stockholmsgatan 22</li>
           <li>123 31 stockholm</li>
         </ul>

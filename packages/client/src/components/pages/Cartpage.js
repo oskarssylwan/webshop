@@ -1,120 +1,108 @@
-import React, { Component } from 'react'
-import { routes } from '../../config.js'
+import React, { useEffect, useState } from 'react'
+import * as Api from 'integrations/api'
 import { Link } from 'react-router-dom'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
+import { Switch } from 'components/Switch'
+import { Loading } from '../../icons/Loading'
 import '../../css/pages/page-cart.css'
 
-export class Cartpage extends Component {
+const mergeObjsBy = (prop, list1, list2) => list1.map(obj1 => {
+  const obj2 = list2.find(obj2 => obj2[prop] === obj1[prop])
+  return obj2 ? { ...obj1, ...obj2 } : obj1
+})
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: [],
-      isEmpty: true
+const PageStatus = {
+  Error: 'Error',
+  Loading: 'Loading',
+  EmptyCart: 'EmptyCart',
+  Idle: 'Idle'
+}
+
+export const CartPage = () => {
+  const [pageStatus, setPageStatus] = useState(PageStatus.Loading)
+  const [cartEntries, setCartEntries] = useState([])
+  const [products, setProducts] = useState([])
+
+  const removeProductFromCart = productId => {
+    setCartEntries(cartEntries.filter(entry => entry.productId !== productId))
+  }
+
+  useEffect(() => {
+    setPageStatus(PageStatus.Loading)
+    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]')
+    if (!savedCart.length) {
+      setPageStatus(PageStatus.EmptyCart)
+    } else {
+      Api.getProducts({ itemIds: savedCart.map(entry => entry.productId) })
+        .then(products => setProducts(mergeObjsBy('_id', products, savedCart.map(entry => ({ ...entry, _id: entry.productId })))))
+        .then(() => setCartEntries(savedCart))
+        .then(() => setPageStatus(PageStatus.Idle))
+        .catch(() => setPageStatus(PageStatus.Error))
     }
-  }
+  }, [])
 
-  componentWillMount() {
-    this.setState({
-      isEmpty: this.checkIfCartIsEmpty()
-    })
-  }
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartEntries))
+    cartEntries.length
+      ? setPageStatus(PageStatus.Idle)
+      : setPageStatus(PageStatus.EmptyCart)
+  }, [cartEntries])
 
-  componentDidMount() {
-    const localStorage = window.localStorage
-    const items = JSON.parse(localStorage.getItem('cart')) || []
-    if (items.length > 0) {
-      const itemIDs = items.map(item => item.itemId)
-      this.fetchItems(itemIDs)
-    }
-  }
+  return (
+    <div className="page">
+      <Header />
+      <main id="content-main" className="container">
+        <Switch on={pageStatus}>
 
-  fetchItems = (items) => {
-    const query = items.join(',')
-    const url = routes.getItemsId + query
-    fetch(url)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          items: json
-        })
-      })
-      .catch(err => console.log(err))
-  }
-
-  removeItemFromCart = event => {
-    if (event.target.name) {
-      const itemID = event.target.name
-      const localStorage = window.localStorage
-      const cart = JSON.parse(localStorage.getItem('cart'))
-      const newCart = cart.filter(item => item.item_id !== itemID)
-      localStorage.setItem('cart', JSON.stringify(newCart))
-      this.setState({
-        items: this.state.items.filter(item => item._id !== itemID),
-        isEmpty: this.checkIfCartIsEmpty()
-      })
-    }
-  }
-
-  checkIfCartIsEmpty = () => {
-    const cart = JSON.parse(window.localStorage.getItem('cart'))
-    if (!cart || cart.length <= 0) {
-      return true
-    }
-    return false
-  }
-
-  render() {
-
-    const renderListItems = () => {
-      if (this.state.items.length > 0) {
-        return this.state.items.map(item => (
-          <li key={item._id}>
-            <div className="wrapper-img">
-              <img src={item.image} alt={item.name} />
+          <Switch.Case match={[PageStatus.Error]}>
+            <div style={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              We could unfortunately not load your cart, please come back in a few minutes.
             </div>
-            <div className="wrapper-info">
-              <span className="light">QNT: 2 | 20:- USD</span>
-              <h3><Link to={`/item/${item._id}`}>{item.name}</Link></h3>
-            </div>
-            <div className="wrapper-button">
-              <button name={item._id} onClick={this.removeItemFromCart} className="button-remove-item"></button>
-            </div>
-          </li>
-        ))
-      } else {
-        //contingency for checkIfCartIsEmpty happens to fail
-        return (<li>Your cart is empty</li>)
-      }
-    }
+          </Switch.Case>
 
-    const renderCart = () => (
-      <div className="wrapper-cart">
-        <h1> Your Cart </h1>
-        <div className="item-list">
-          {renderListItems()}
-        </div>
-        <div className="cart-info">
-          <div>
-            <a className="button" href="/checkout">To Chekout</a>
-          </div>
-        </div>
-      </div>
-    )
+          <Switch.Case match={[PageStatus.Loading]}>
+            <div style={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Loading classes="loading social-icons"/>
+            </div>
+          </Switch.Case>
 
-    return (
-      <div className="page">
-        <Header />
-        <main id="content-main" className="container">
-          {
-            this.state.isEmpty
-              ? <div className="wrapper-cart"><h1>Your cart is empty</h1></div>
-              : renderCart()
-          }
-        </main>
-        <Footer />
-      </div>
-    )
-  }
+          <Switch.Case match={[PageStatus.EmptyCart]}>
+            <div className="wrapper-cart">
+              <h1>Your cart is empty</h1>
+            </div>
+          </Switch.Case>
+
+          <Switch.Case match={[PageStatus.Idle]}>
+            <div className="wrapper-cart">
+              <h1>Your Cart</h1>
+              <div className="item-list">
+                {products.map(product => (
+                  <li key={product._id}>
+                    <div className="wrapper-img">
+                      <img src={product.image} alt={product.name} />
+                    </div>
+                    <div className="wrapper-info">
+                      <h3><Link to={`/products/${product._id}`}>{product.name}</Link></h3>
+                      <span className="light">QNT: {product.quantity} | {product.price} :- USD</span>
+                    </div>
+                    <div className="wrapper-button">
+                      <button name={product._id} onClick={() => removeProductFromCart(product._id)} className="button-remove-item"></button>
+                    </div>
+                  </li>
+                ))}
+              </div>
+              <div className="cart-info">
+                <div>
+                  <a className="button" href="/checkout">To Chekout</a>
+                </div>
+              </div>
+            </div>
+          </Switch.Case>
+
+        </Switch>
+      </main>
+      <Footer />
+    </div>
+  )
 }

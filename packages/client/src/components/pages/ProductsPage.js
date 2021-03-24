@@ -1,7 +1,6 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import * as Api from 'integrations/api'
-import { routes } from '../../config.js'
 import { Header} from '../Header'
 import { Footer } from '../Footer'
 import { BasicBlock } from '../blocks/BasicBlock'
@@ -80,7 +79,7 @@ export const ProductsPage = () => {
               <div className="grid-square">
                 {products.map(product => (
                   <BasicBlock
-                    href={`/item/${product._id}`}
+                    href={`/products/${product._id}`}
                     title={product.name}
                     image={product.image}
                     secondary={`${product.price} USD`}

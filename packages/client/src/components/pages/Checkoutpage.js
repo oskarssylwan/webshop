@@ -8,8 +8,8 @@ export const Checkoutpage = () => (
     <Header />
     <main id="content-main" className="container">
       <div className="wrapper-contact">
-        <h1>Thank you for checking out my project!</h1>
-        <a target="_blank" href="#">Github repository</a>
+        <h1>Thank you for checking out this demo project!</h1>
+        <a target="_blank" href="https://github.com/oskarssylwan/webshop">Github repository</a>
       </div>
     </main>
     <Footer />

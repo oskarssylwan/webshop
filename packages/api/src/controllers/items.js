@@ -24,11 +24,10 @@ const methods = {
   },
 
   getItemsByIDs: function(req, res, next) {
-    if (!req.query.itemIDs) return next(new Error('No category specified'))
-    Item.find({ _id: { $in: req.query.itemIDs.split(',')}}, (error, items) => {
+    if (!req.query.itemIds) return next(new Error('No category products specified'))
+    Item.find({ _id: { $in: req.query.itemIds.split(',')}}, (error, items) => {
       if (error) return next(error)
-      if (items.length <= 0) return next(new Error('No items found'))
-      res.json(items)
+      res.json(items || [])
     }
     )
   },
@@ -48,15 +47,11 @@ const methods = {
   },
 
   getItem: function(req, res, next) {
-    res.json({
-      success: true,
-      message: 'Item retrieved successfully!',
-      item: req.item
-    })
+    res.json(req.item)
   },
 
   createItem: function(req, res, next) {
-    if (req.token_decoded.user_group === 'admin') {
+    if (req.tokenDecoded.userGroup === 'admin') {
 
       ImageRepository.upload({
         fileName: `${nanoid()}${req.body.imageFormat}`,
@@ -80,7 +75,7 @@ const methods = {
   },
 
   updateItem: function(req, res, next) {
-    if (req.token_decoded.user_group === 'admin') {
+    if (req.tokenDecoded.userGroup === 'admin') {
       req.item.set(req.body)
       req.item.save((error, item) => {
         if (error) return next(error)
@@ -98,7 +93,7 @@ const methods = {
   },
 
   deleteItem: function(req, res, next) {
-    if (req.token_decoded.user_group === 'admin') {
+    if (req.tokenDecoded.userGroup === 'admin') {
       req.item.remove(error => {
         if (error) return next(error)
         res.json({
