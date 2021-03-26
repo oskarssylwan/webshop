@@ -5,7 +5,7 @@ export const getProducts = ({ categories = [], itemIds = [] }) => {
   const queryParams = []
 
   if (categories && categories.length) queryParams.push(`categories=${categories.join(',')}`)
-  if (itemIds && itemIds.length) queryParams.push(`?itemIds=${itemIds.join(',')}`)
+  if (itemIds && itemIds.length) queryParams.push(`itemIds=${itemIds.join(',')}`)
 
   if (queryParams.length) {
     url += `?${queryParams.join('&')}`

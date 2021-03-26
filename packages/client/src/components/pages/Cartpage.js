@@ -5,6 +5,7 @@ import { Header } from '../Header'
 import { Footer } from '../Footer'
 import { Switch } from 'components/Switch'
 import { Loading } from '../../icons/Loading'
+import { useCart } from '../Cart'
 import '../../css/pages/page-cart.css'
 
 const mergeObjsBy = (prop, list1, list2) => list1.map(obj1 => {
@@ -21,32 +22,30 @@ const PageStatus = {
 
 export const CartPage = () => {
   const [pageStatus, setPageStatus] = useState(PageStatus.Loading)
-  const [cartEntries, setCartEntries] = useState([])
+  const { cart: cartEntries, remove: removeProductFromCart } = useCart()
   const [products, setProducts] = useState([])
 
-  const removeProductFromCart = productId => {
-    setCartEntries(cartEntries.filter(entry => entry.productId !== productId))
+  const updateProductList = products => {
+    setProducts(mergeObjsBy(
+      '_id',
+      cartEntries.map(entry => ({ ...entry, _id: entry.productId })),
+      products
+    ))
   }
 
   useEffect(() => {
-    setPageStatus(PageStatus.Loading)
-    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]')
-    if (!savedCart.length) {
+    if (!cartEntries.length) {
       setPageStatus(PageStatus.EmptyCart)
+    } else if (cartEntries.length <= products.length) {
+      updateProductList(products)
+      setPageStatus(PageStatus.Idle)
     } else {
-      Api.getProducts({ itemIds: savedCart.map(entry => entry.productId) })
-        .then(products => setProducts(mergeObjsBy('_id', products, savedCart.map(entry => ({ ...entry, _id: entry.productId })))))
-        .then(() => setCartEntries(savedCart))
+      setPageStatus(PageStatus.Loading)
+      Api.getProducts({ itemIds: cartEntries.map(entry => entry.productId) })
+        .then(updateProductList)
         .then(() => setPageStatus(PageStatus.Idle))
         .catch(() => setPageStatus(PageStatus.Error))
     }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartEntries))
-    cartEntries.length
-      ? setPageStatus(PageStatus.Idle)
-      : setPageStatus(PageStatus.EmptyCart)
   }, [cartEntries])
 
   return (

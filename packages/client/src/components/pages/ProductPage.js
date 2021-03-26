@@ -6,6 +6,7 @@ import { Footer } from '../Footer'
 import { BasicBlock } from '../blocks/BasicBlock'
 import { Switch } from 'components/Switch'
 import { Loading } from '../../icons/Loading'
+import { useCart } from '../Cart'
 import '../../css/pages/page-item.css'
 
 const PageStatus = {
@@ -18,6 +19,7 @@ const PageStatus = {
 export const ProductPage = () => {
   const { productId } = useParams()
   const [pageStatus, setPageStatus] = useState(PageStatus.Loading)
+  const cart = useCart()
   const [product, setProduct] = useState({})
   const [size, setSize] = useState('M')
   const [quantity, setQuantity] = useState(1)
@@ -25,9 +27,8 @@ export const ProductPage = () => {
 
   const addProductToCart = event => {
     event.preventDefault()
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
     const cartEntry = { productId, size, quantity }
-    localStorage.setItem('cart', JSON.stringify([...cart, cartEntry]))
+    cart.add(cartEntry)
     setUserFeedback('Product Added')
   }
 

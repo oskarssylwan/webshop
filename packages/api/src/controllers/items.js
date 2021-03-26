@@ -33,7 +33,7 @@ const methods = {
   },
 
   getItems: function(req, res, next) {
-    if (req.query.itemIDs) {
+    if (req.query.itemIds) {
       methods.getItemsByIDs(req, res, next)
     } else if (req.query.categories) {
       methods.getItemsByCategory(req, res, next)
