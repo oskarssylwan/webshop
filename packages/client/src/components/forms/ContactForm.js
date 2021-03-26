@@ -1,27 +1,22 @@
 import React, { useState } from 'react'
+import { useForm } from '../Form'
 
 export const ContactForm = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [contactMessage, setContactMessage] = useState('')
+  const [formValues, setFormValue, resetForm] = useForm()
   const [userFeedback, setUserFeedback] = useState('')
 
   const onSubmit = event => {
     event.preventDefault()
-    setName('')
-    setEmail('')
-    setSubject('')
-    setContactMessage('')
+    resetForm()
     setUserFeedback('Message Sent!')
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <input name="name" type="text" onChange={event => setName(event.target.value)} value={name} placeholder="Name" required/>
-      <input name="email" type="text" onChange={event => setEmail(event.target.value)} value={email} placeholder="Email" required/>
-      <input name="subject" type="text" onChange={event => setSubject(event.target.value)} value={subject} placeholder="Subject" required/>
-      <textarea name="contactMessage" onChange={event => setContactMessage(event.target.value)} value={contactMessage} placeholder="Message" required/>
+    <form onSubmit={onSubmit} onChange={setFormValue}>
+      <input name="name" type="text" value={formValues.name} placeholder="Name" required/>
+      <input name="email" type="text" value={formValues.email} placeholder="Email" required/>
+      <input name="subject" type="text" value={formValues.subject} placeholder="Subject" required/>
+      <textarea name="contactMessage" value={formValues.contactMessage} placeholder="Message" required/>
       <fieldset className="buttons">
         <span className="message">{userFeedback}</span>
         <button type="submit">Send</button>

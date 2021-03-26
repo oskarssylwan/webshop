@@ -1,32 +1,26 @@
-import React, { Component } from 'react'
-import { routes } from '../../config.js'
-import { isAdmin } from '../../helpers.js'
+import React, { useState } from 'react'
+import { routes } from '../../config'
+import { useForm } from '../Form'
 import '../../css/login.css'
 
-export class LoginForm extends Component {
+const defaultFormValues = () => ({
+  password: '',
+  username: ''
+})
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      password: '',
-      username: '',
-      message: ''
-    }
-  }
+export const LoginForm = () => {
+  const [formValues, setFormValue, resetForm] = useForm(defaultFormValues())
+  const [userFeedback, setUserFeedback] = useState('')
 
-  onInputChange = event => {
-    this.setState({[event.target.name]: event.target.value})
-  }
-
-  onSubmit = event => {
+  const onSubmit = event => {
     event.preventDefault()
     const requestHeaders = new Headers()
 
     requestHeaders.append('Content-Type', 'application/json')
 
     const requestBody = JSON.stringify({
-      username: this.state.username,
-      password: this.state.password
+      username: formValues.username,
+      password: formValues.password
     })
 
     const options = {
@@ -40,44 +34,25 @@ export class LoginForm extends Component {
       .then(json => {
         if (json.success) {
           localStorage.setItem('token', `${json.token}`)
-          this.redirect()
+          window.location = '/admin'
         }
-        this.setState({message: json.message})
-        this.resetInputFields()
-
+        setUserFeedback(json.message)
+        resetForm()
       })
       .catch(err => {
-        this.setState({ message: 'Sorry, something went wrong...' })
-        this.resetInputFields()
+        setUserFeedback('Sorry, something went wrong...')
+        resetForm()
       })
   }
 
-  resetInputFields = () => {
-    this.setState({
-      password: '',
-      username: ''
-    })
-  }
-
-  redirect = () => {
-    console.log(window.localStorage.token)
-    if (isAdmin(window.localStorage.token)) {
-      window.location = '/admin'
-    } else {
-      window.location = '/'
-    }
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input name="username" type="text" onChange={this.onInputChange} value={this.state.username} placeholder="Username" required/>
-        <input name="password" type="password" onChange={this.onInputChange} value={this.state.password} placeholder="Password" required/>
-        <fieldset className="buttons">
-          <span className="message">{this.state.message}</span>
-          <button type="submit">Login</button>
-        </fieldset>
-      </form>
-    )
-  }
+  return (
+    <form onSubmit={onSubmit} onChange={setFormValue}>
+      <input name="username" type="text" value={formValues.username} placeholder="Username" required/>
+      <input name="password" type="password" value={formValues.password} placeholder="Password" required/>
+      <fieldset className="buttons">
+        <span className="message">{userFeedback}</span>
+        <button type="submit">Login</button>
+      </fieldset>
+    </form>
+  )
 }
