@@ -1,34 +1,32 @@
 import React from 'react'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import { Cart } from './components/Cart'
-import { Homepage } from './components/pages/Homepage'
-import { Loginpage } from './components/pages/Loginpage'
-import { AdminPage } from './components/pages/AdminPage'
-import { ProductPage } from './components/pages/ProductPage'
-import { Aboutpage } from './components/pages/Aboutpage'
-import { Storepage } from './components/pages/Storepage'
-import { ProductsPage } from './components/pages/ProductsPage'
-import { Contactpage } from './components/pages/Contactpage'
-import { CartPage } from './components/pages/CartPage'
-import { Checkoutpage } from './components/pages/Checkoutpage'
+import { Cart, CartPage } from 'components/cart'
+import { HomePage } from 'components/home'
+import { LoginPage } from 'components/login'
+import { AdminPage } from 'components/admin'
+import { AboutPage } from 'components/about'
+import { LocationsPage } from 'components/locations'
+import { ProductsPage, ProductPage } from 'components/products'
+import { ContactPage } from 'components/contact'
+import { CheckoutPage } from 'components/checkout'
 
 export const App = () => (
   <Cart>
     <BrowserRouter>
       <div className="site">
         <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/login" component={Loginpage} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/login" component={LoginPage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/products/:productId" component={ProductPage} />
           <Redirect from="/item" to="/shop"/>
-          <Route path="/about" component={Aboutpage} />
-          <Route path="/stores" component={Storepage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/stores" component={LocationsPage} />
           <Route path="/shop/:category" component={ProductsPage} />
           <Route path="/shop" component={ProductsPage} />
-          <Route path="/contact" component={Contactpage} />
+          <Route path="/contact" component={ContactPage} />
           <Route path="/cart" component={CartPage} />
-          <Route path="/checkout" component={Checkoutpage} />
+          <Route path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     </BrowserRouter>

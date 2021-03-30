@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useForm } from '../Form'
+import { useForm } from 'components/shared/Form'
 
 export const ContactForm = () => {
   const [formValues, setFormValue, resetForm] = useForm()

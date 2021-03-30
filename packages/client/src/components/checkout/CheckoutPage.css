@@ -1,0 +1,22 @@
+
+.wrapper-checkout {
+  margin: var(--space-xxl) auto;
+  max-width: 500px;
+}
+
+.wrapper-checkout h1 {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.wrapper-checkout .buttons {
+  text-align: right;
+}
+.wrapper-checkout button {
+  margin-left: var(--space-xl)
+}
+
+@media (min-width: 870px) {
+  .wrapper-checkout {margin: var(--space-xxl) 0}
+  .wrapper-checkout h1 {text-align: left}
+}

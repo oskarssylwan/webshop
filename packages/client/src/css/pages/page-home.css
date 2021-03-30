@@ -1,9 +1,0 @@
-.grid-square .social-block,
-.grid-square .contact-form {display:none}
-
-@media (min-width: 1180px) {
-  .grid-square .contact-block {display: none}
-  
-  .grid-square .social-block,
-  .grid-square .contact-form {display:block;}
-}

@@ -1,0 +1,19 @@
+.wrapper-upload-form {
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-xxl) auto;
+}
+
+.wrapper-upload-form .buttons {
+  text-align: right;
+}
+.wrapper-upload-form button {
+  margin-left: var(--space-xl)
+}
+
+@media (min-width: 600px) {
+  .wrapper-upload-form {
+    width: 485px;
+    margin-top: var(--space-xxxl);
+  }
+}
