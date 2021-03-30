@@ -1,15 +1,6 @@
-* {margin: 0;padding: 0;box-sizing: border-box;}
-
-/*------------------------------
-          VARIABLES
------------------------------*/
 :root {
-
-  /* Globals */
   --site-width:     95vw;
   --site-width-max: 1350px;
-
-  /* Space */
   --space-xs:   2px;
   --space-s:    4px;
   --space-m:    8px;
@@ -17,21 +8,14 @@
   --space-xl:   32px;
   --space-xxl:  64px;
   --space-xxxl:  128px;
-
-
-  /* Color */
   --color-foreground:     #000;
   --color-background:     #fff;
   --color-digital-blue:   hsl(209, 100%, 55%);
   --color-off-white:      hsl(13,26%,96%);
-
   --color-gray-30:          hsl(0, 0%, 30%);
   --color-gray-40:          hsl(360, 0%, 40%);
   --color-gray-70:          hsl(360, 0%, 70%);
   --color-gradient-gray:    radial-gradient( #fdfffa 50%, #e7e7e4);
-
-
-  /* Fonts */
   --font-primary:              'Roboto', sans-serif;
   --font-default-size:         16px;
   --font-default-lineheight:   1.6;
@@ -39,22 +23,19 @@
   --font-weight-m:             400;
   --font-weight-l:             400;
   --font-weight-xl:            700;
-
 }
 
-/*------------------------------
-    Media Queries Variables
------------------------------*/
  @media (min-width: 500px) {
    :root {
      --site-width:     80vw;
    }
  }
 
-
-/*------------------------------
-        BASE STYLES
------------------------------*/
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
 
 body {
   font-family: var(--font-primary);
@@ -68,7 +49,6 @@ h4 {
   text-transform: uppercase;
   margin-bottom: var(--space-m);
 }
-
 
 p {
   line-height: 1.5;
@@ -115,8 +95,6 @@ button[type='submit'] {
   border-radius: 4px;
 }
 button[type='submit']:hover {
-/*button[type='submit']:active*/
-/*button[type='submit']:focus {*/
   cursor: pointer;
   transform: translateY(-3px);
 }
@@ -183,13 +161,10 @@ select:hover {
 .buttons {
   text-align: right;
 }
+
 .buttons button {
   margin-left: var(--space-xl)
 }
-
-
-
-
 
 /*------------------------------
         COMPONENTS
@@ -202,6 +177,7 @@ select:hover {
   fill: var(--color-gray-70);
   transition: fill .3s;
 }
+
 .social-icons:hover {
   fill: black;
 }
@@ -223,10 +199,12 @@ select:hover {
   border-radius: 4px;
   display: inline-block;
 }
+
 .button:hover {
   transform: translateY(-3px);
   color: white;
 }
+
 .button:visited {
   color: white;
 }
@@ -235,13 +213,14 @@ select:hover {
   flex: 1;
   padding-top: 63px;
 }
+
 @media (min-width:600px) {
   #content-main {
     padding-top: 0;
   }
 }
 
-/*------------------------------
+/*----------------------------
         HELPERS
 -----------------------------*/
 .container {
@@ -256,52 +235,13 @@ select:hover {
   height: 100%;
 }
 
-.cursor-style-pointer {
-  cursor: pointer;
-}
-
-.bold {font-weight: bold}
-.light {font-weight: 300}
-
+.cursor-style-pointer { cursor: pointer; }
+.bold { font-weight: bold; }
+.light { font-weight: 300; }
 
 /*------------------------------
         Transitions
 -----------------------------*/
-.fade-in-hero-appear {
-  opacity: 0;
-  transform: scale(.9);
-
-}
-
-.fade-in-hero-appear.fade-in-hero-appear-active {
-  opacity:1;
-  transition: all 2s;
-  transform: scale(1);
-}
-
-
-.fade-and-scale-in-appear {
-  opacity: 0;
-  transform: scale(.8);
-  visibility: hidden;
-}
-
-.fade-and-scale-in-appear.fade-and-scale-in-appear-active {
-  opacity:1;
-  transform: scale(1);
-  visibility: visible;
-  transition: transform 1.5s, opacity 2.5s;
-}
-
-.fade-out-leave {
-  opacity: 1;
-}
-
-.fade-out-leave.fade-out-leave-active {
-  opacity: 0;
-  transform:  scale(0.9);
-  transition: opacity .3s, transform .3s;
-}
 
 .transition-scale {
   transition: transform .5s;
@@ -310,7 +250,6 @@ select:hover {
 .transition-scale:hover {
   transform: scale(0.98);
 }
-
 
 /*------------------------------
           ANIMATIONS

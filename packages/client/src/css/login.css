@@ -1,10 +1,9 @@
-.wrapper-login{
-  margin-top: ;
+.wrapper-login {
   display: flex;
   flex-direction: column;
   margin: var(--space-xxl) auto;
 }
-/*.wrapper-login .buttons .message {display: inline-block;}*/
+
 .wrapper-login .buttons {
   text-align: right;
 }
@@ -13,7 +12,7 @@
 }
 
 @media (min-width: 600px) {
-  .wrapper-login{
+  .wrapper-login {
     width: 485px;
     margin-top: var(--space-xxxl);
   }

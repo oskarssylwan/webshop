@@ -1,0 +1,21 @@
+.button-menu {
+  height: 20px;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  cursor: pointer;
+}
+
+.button-menu > div {
+  width: 100%;
+  height:3px;
+  background: var(--color-foreground);
+}
+
+@media (min-width: 600px) {
+  .button-menu {
+    display: none;
+  }
+}

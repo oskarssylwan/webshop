@@ -1,0 +1,18 @@
+
+.logo {
+  font-size:       1.5rem;
+  color:           var(--color-foreground);
+  font-weight:     var(--font-weight-xl);
+  border-bottom:   3px solid black;
+  text-transform:  uppercase;
+  letter-spacing:  1px;
+}
+
+.logo:active,
+.logo:visited,
+.logo:hover       {color: var(--color-foregournd);}
+
+
+@media (min-width: 600px) {
+  .logo {font-size: 2.2rem;}
+}

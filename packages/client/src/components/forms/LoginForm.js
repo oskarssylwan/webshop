@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { routes } from '../../config'
-import { useForm } from '../Form'
-import '../../css/login.css'
+import { routes } from 'config'
+import { useForm } from 'components/shared/Form'
+import 'css/login.css'
 
 const defaultFormValues = () => ({
   password: '',

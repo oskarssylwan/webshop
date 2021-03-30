@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { routes } from '../../config'
-import { convertTo64 } from '../../helpers'
-import { useForm } from '../Form'
-import '../../css/login.css'
+import { routes } from 'config'
+import { convertTo64 } from 'helpers'
+import { useForm } from 'components/shared/Form'
+import 'css/login.css'
 
 const defaultFormValues = () => ({
   name: '',
