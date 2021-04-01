@@ -79,11 +79,7 @@ export const ProductsPage = () => {
                 image={product.image}
                 secondary={`${product.price} USD`}
                 key={product._id}
-                additionalClasses={`
-                  block-size-s
-                  cursor-style-pointer
-                  transition-scale
-                `}
+                additionalClasses="block-size-s cursor-style-pointer transition-scale"
               />
             ))}
           </SquareGrid>
