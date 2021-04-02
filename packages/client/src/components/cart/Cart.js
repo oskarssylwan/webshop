@@ -11,8 +11,10 @@ export const Cart = props => {
     setCart(cart.filter(entry => entry.productId !== productId))
   }
 
-  const addProductToCart = cartEntry => {
-    setCart([...cart, cartEntry])
+  const addProductToCart = (cartEntry = {}) => {
+    const quantity = parseInt(cartEntry.quantity)
+    if (isNaN(quantity) || quantity === 0) return
+    setCart([...cart, { ...cartEntry, quantity }])
   }
 
   useEffect(() => {
