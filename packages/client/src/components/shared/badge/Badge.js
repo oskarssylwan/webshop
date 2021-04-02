@@ -14,7 +14,7 @@ export const Badge = ({
   return (
     <Component className={classes}>
       {children}
-      <span className="badge__count">{_count}{_count > 99 ? '+' : ''}</span>
+      <span className="badge__count">{_count > 99 ? '99+' : _count}</span>
     </Component>
   )
 }

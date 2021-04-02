@@ -6,11 +6,6 @@ import { Loading } from 'icons/Loading'
 import { useCart } from 'components/cart'
 import './CartPage.css'
 
-const mergeObjsBy = (prop, list1, list2) => list1.map(obj1 => {
-  const obj2 = list2.find(obj2 => obj2[prop] === obj1[prop])
-  return obj2 ? { ...obj1, ...obj2 } : obj1
-})
-
 const PageStatus = {
   Error: 'Error',
   Loading: 'Loading',
@@ -21,26 +16,20 @@ const PageStatus = {
 export const CartPage = () => {
   const [pageStatus, setPageStatus] = useState(PageStatus.Loading)
   const { cart: cartEntries, remove: removeProductFromCart } = useCart()
-  const [products, setProducts] = useState([])
-
-  const updateProductList = products => {
-    setProducts(mergeObjsBy(
-      '_id',
-      cartEntries.map(entry => ({ ...entry, _id: entry.productId })),
-      products
-    ))
-  }
+  const [products, setProducts] = useState({})
 
   useEffect(() => {
     if (!cartEntries.length) {
       setPageStatus(PageStatus.EmptyCart)
-    } else if (cartEntries.length <= products.length) {
-      updateProductList(products)
+    } else if (cartEntries.length <= Object.keys(products).length) {
       setPageStatus(PageStatus.Idle)
     } else {
       setPageStatus(PageStatus.Loading)
       Api.getProducts({ itemIds: cartEntries.map(entry => entry.productId) })
-        .then(updateProductList)
+        .then(products => {
+          const productMap = products.reduce((map, product) => ({...map, [product._id]: product}), {})
+          setProducts(productMap)
+        })
         .then(() => setPageStatus(PageStatus.Idle))
         .catch(() => setPageStatus(PageStatus.Error))
     }
@@ -68,30 +57,32 @@ export const CartPage = () => {
       </Switch.Case>
 
       <Switch.Case match={[PageStatus.Idle]}>
-        <div className="wrapper-cart">
-          <h1>Your Cart</h1>
-          <div className="item-list">
-            {products.map(product => (
-              <li key={product._id}>
-                <div className="wrapper-img">
-                  <img src={product.image} alt={product.name} />
-                </div>
-                <div className="wrapper-info">
-                  <h3><Link to={`/products/${product._id}`}>{product.name}</Link></h3>
-                  <span className="light">QNT: {product.quantity} | {product.price} :- USD</span>
-                </div>
-                <div className="wrapper-button">
-                  <button name={product._id} onClick={() => removeProductFromCart(product._id)} className="button-remove-item"></button>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="cart-info">
-            <div>
-              <a className="button" href="/checkout">To Chekout</a>
+        {() => (
+          <div className="wrapper-cart">
+            <h1>Your Cart</h1>
+            <div className="item-list">
+              {cartEntries.map(entry => (
+                <li key={entry.productId + entry.size}>
+                  <div className="wrapper-img">
+                    <img src={products[entry.productId].image} alt={products[entry.productId].name} />
+                  </div>
+                  <div className="wrapper-info">
+                    <h3><Link to={`/products/${entry.productId}`}>{products[entry.productId].name}</Link></h3>
+                    <span className="light">QNT: {entry.quantity} | SIZE: {entry.size} | PRICE: {products[entry.productId].price}:- USD</span>
+                  </div>
+                  <div className="wrapper-button">
+                    <button name={entry.productId} onClick={() => removeProductFromCart(entry)} className="button-remove-item"></button>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="cart-info">
+              <div>
+                <a className="button" href="/checkout">To Chekout</a>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </Switch.Case>
 
     </Switch>
