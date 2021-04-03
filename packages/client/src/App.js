@@ -6,7 +6,6 @@ import { Cart, CartPage } from 'components/cart'
 import { HomePage } from 'components/home'
 import { LoginPage } from 'components/login'
 import { AdminPage } from 'components/admin'
-import { AboutPage } from 'components/about'
 import { LocationsPage } from 'components/locations'
 import { ProductsPage, ProductPage } from 'components/products'
 import { ContactPage } from 'components/contact'
@@ -25,7 +24,6 @@ export const App = () => (
               <Route path="/admin" component={AdminPage} />
               <Route path="/products/:productId" component={ProductPage} />
               <Redirect from="/item" to="/shop"/>
-              <Route path="/about" component={AboutPage} />
               <Route path="/stores" component={LocationsPage} />
               <Route path="/shop/:category" component={ProductsPage} />
               <Route path="/shop" component={ProductsPage} />
