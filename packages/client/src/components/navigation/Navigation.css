@@ -16,7 +16,10 @@
   transition-timing-function: ease-in-out;
 }
 
-.navigation-primary a {
+
+.navigation-primary a,
+.navigation-primary a:visited,
+.navigation-primary a:active {
   text-transform:  uppercase;
   color: var(--color-foregound);
   font-weight: 500;
@@ -35,7 +38,10 @@
 
 .navigation-secondary a:first-child{ margin-left: 0; }
 .navigation-secondary a:hover{ color: var(--color-gray-30); }
-.navigation-secondary a {
+
+.navigation-secondary a,
+.navigation-secondary a:visited,
+.navigation-secondary a:active  {
   text-transform: uppercase;
   color: var(--color-gray-70);
   font-weight: 500;

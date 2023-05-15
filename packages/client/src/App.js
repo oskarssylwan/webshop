@@ -1,7 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import { Header } from 'components/header'
-import { Footer } from 'components/footer'
+import { createBrowserRouter, RouterProvider, redirect } from 'react-router-dom'
+import { MainLayout } from 'layouts'
 import { Cart, CartPage } from 'components/cart'
 import { HomePage } from 'components/home'
 import { LoginPage } from 'components/login'
@@ -11,30 +10,99 @@ import { ProductsPage, ProductPage } from 'components/products'
 import { ContactPage } from 'components/contact'
 import { CheckoutPage } from 'components/checkout'
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <MainLayout>
+        <HomePage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/login',
+    element: (
+      <MainLayout>
+        <LoginPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/admin',
+    element: (
+      <MainLayout>
+        <AdminPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/products/:productId',
+    element: (
+      <MainLayout>
+        <ProductPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/item',
+    loader: () => redirect('/shop')
+  },
+  {
+    path: '/stores',
+    element: (
+      <MainLayout>
+        <LocationsPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/shop/:category',
+    element: (
+      <MainLayout>
+        <ProductsPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/shop',
+    element: (
+      <MainLayout>
+        <ProductsPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/contact',
+    element: (
+      <MainLayout>
+        <ContactPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/cart',
+    element: (
+      <MainLayout>
+        <CartPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '/checkout',
+    element: (
+      <MainLayout>
+        <CheckoutPage />
+      </MainLayout>
+    )
+  },
+  {
+    path: '*',
+    loader: () => redirect('/')
+  }
+])
+
 export const App = () => (
   <Cart>
-    <BrowserRouter>
-      <div className="site">
-        <div className="page">
-          <Header />
-          <main id="content-main" className="container">
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/login" component={LoginPage} />
-              <Route path="/admin" component={AdminPage} />
-              <Route path="/products/:productId" component={ProductPage} />
-              <Redirect from="/item" to="/shop"/>
-              <Route path="/stores" component={LocationsPage} />
-              <Route path="/shop/:category" component={ProductsPage} />
-              <Route path="/shop" component={ProductsPage} />
-              <Route path="/contact" component={ContactPage} />
-              <Route path="/cart" component={CartPage} />
-              <Route path="/checkout" component={CheckoutPage} />
-            </Switch>
-          </main>
-          <Footer />
-        </div>
-      </div>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </Cart>
 )

@@ -18,3 +18,4 @@ export const getProducts = ({ categories = [], itemIds = [] }) => {
 export const getProduct = itemId =>
   fetch(`${apiLocation}/items/${itemId}`)
     .then(res => res.json())
+    .then(response => response.item)
